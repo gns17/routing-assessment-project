@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtual environment
+.venv/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Django
+db.sqlite3
+*.log
+staticfiles/
+
+# Tests / lint
+.pytest_cache/
+.coverage
+htmlcov/
+.ruff_cache/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store

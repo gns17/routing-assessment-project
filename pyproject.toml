@@ -1,0 +1,22 @@
+[project]
+name = "spotter-routing-assessment"
+version = "0.1.0"
+description = "Small API assignment for Spotter"
+readme = "README.md"
+authors = [
+    { name = "Luciano Noble", email = "54687902+gns17@users.noreply.github.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "django==6.1.2",
+    "djangorestframework>=3.18.3",
+    "httpx>=0.28.1",
+    "python-dotenv>=1.2.4",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-django>=4.14.0",
+    "ruff>=0.16.10",
+]
