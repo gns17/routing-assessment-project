@@ -1,0 +1,62 @@
+[
+  {
+    "opis_id": 4446,
+    "location_fingerprint": "8b2fc50ff5722963ac669d71c797a4ba1e56085a8b464e76b899e7e1bee3fe5b",
+    "latitude": 35.191927,
+    "longitude": -101.760945,
+    "policy": "manual-corridor-site-v1",
+    "identity_verified": true,
+    "source": "https://www.loves.com/locations/tx/amarillo/loves-travel-stop-amarillo-200",
+    "evidence": "Official OPIS 04446, branch 200, Amarillo TX, I-40 exit 74. Official street address: 6930 I-40 E., Amarillo, TX 79120. Coordinates: 35.191927,-101.760945 (official_jsonld_geo). Independent placement review: Point at pixel (248.47,237.75) in first tile lies in fuel-site/store plot; adjacent eastern tiles label Love's west of Whitaker Rd, distinct from nearby TA/Exxon. Map sources: https://tile.openstreetmap.org/17/28485/51831.png, https://tile.openstreetmap.org/17/28486/51831.png, https://tile.openstreetmap.org/17/28486/51832.png. Site location only: entrance, road access and detours not verified. Reviewed 2026-10-09T03:01:07.207905+00:00"
+  },
+  {
+    "opis_id": 7733,
+    "location_fingerprint": "a8f8b9faf8548724a68e5d009cd77c41bbf4ee77618e02fb3874c8d6a24ba21a",
+    "latitude": 35.1937863,
+    "longitude": -101.7234389,
+    "policy": "manual-corridor-site-v1",
+    "identity_verified": true,
+    "source": "https://locations.pilotflyingj.com/us/tx/amarillo/9601-e-i-40",
+    "evidence": "Branch 723, Amarillo TX, I-40 exit 76 match source. Official street address: 9601 E I-40, Amarillo, TX 79118. Coordinates: 35.1937863,-101.7234389 (official_visible_coordinates). Independent placement review: Point (160.30,25.69) lies in store building/forecourt plot beside named Flying J fuel icons north of I-40, distinct from nearby fuel station west of street. Map sources: https://tile.openstreetmap.org/17/28499/51831.png. Site location only: entrance, road access and detours not verified. Reviewed 2026-10-09T03:01:07.207905+00:00"
+  },
+  {
+    "opis_id": 4227,
+    "location_fingerprint": "d1bb2adc60b19cf277193ccf98cb3430377f6698656f26f771442969daaf99e0",
+    "latitude": 35.457659,
+    "longitude": -97.688649,
+    "policy": "manual-corridor-site-v1",
+    "identity_verified": true,
+    "source": "https://www.loves.com/locations/ok/oklahoma-city/loves-travel-stop-oklahoma-city-203",
+    "evidence": "Official OPIS 04227, branch 203, Oklahoma City OK, I-40 exit 140. Official street address: 800 S Morgan Rd., Oklahoma City, OK 73128. Coordinates: 35.457659,-97.688649 (official_jsonld_geo). Independent placement review: Point (165.97,88.54) in detailed tile, (82.99,172.27) in overview is inside named Love's Travel Stop fuel plot east of S Morgan Rd, distinct from Flying J on opposite side. Map sources: https://tile.openstreetmap.org/17/29968/51713.png, https://tile.openstreetmap.org/16/14984/25856.png. Site location only: entrance, road access and detours not verified. Reviewed 2026-10-09T03:01:07.207905+00:00"
+  },
+  {
+    "opis_id": 52468,
+    "location_fingerprint": "f78a526e01ee1c383d5790fabeb0a9d5d9fd47296ed40571f340d207c700d8f6",
+    "latitude": 35.4587888,
+    "longitude": -97.6904462,
+    "policy": "manual-corridor-site-v1",
+    "identity_verified": true,
+    "source": "https://locations.pilotflyingj.com/us/ok/oklahoma-city/701-s-morgan-rd",
+    "evidence": "Branch 703, Oklahoma City OK, I-40 exit 140 match source. Official street address: 701 S Morgan Rd, Oklahoma City, OK 73128. Coordinates: 35.4587888,-97.6904462 (official_visible_coordinates). Independent placement review: Point (254.46,215.26) at east edge of first tile lies in building/forecourt of named Flying J Travel Center west of S Morgan Rd; adjacent tile confirms fuel plot, distinct from Love's. Map sources: https://tile.openstreetmap.org/17/29967/51712.png, https://tile.openstreetmap.org/17/29968/51712.png. Site location only: entrance, road access and detours not verified. Reviewed 2026-10-09T03:01:07.207905+00:00"
+  },
+  {
+    "opis_id": 6755,
+    "location_fingerprint": "34b3c3ea8ab98917df872badfe35e57ca31c300e9e3fb4225e0c5a1842c6baa2",
+    "latitude": 34.781,
+    "longitude": -92.1298,
+    "policy": "manual-corridor-site-v1",
+    "identity_verified": true,
+    "source": "https://www.ta-petro.com/location/ar/petro-n-little-rock/",
+    "evidence": "Branch 0326 equals CSV 326, North Little Rock AR, I-40 exit 161. Official street address: 3205 Valentine Road, North Little Rock, AR 72117-9491. Coordinates: 34.78100000000000,-92.12980000000000 (official_jsonld_geo). Independent placement review: Point (144.25,139.31) lies within mapped truck-stop forecourt/fuel plot with Shell pumps (official Petro page also identifies Shell); independent Arkansas DEQ facility GPS corroborates site. Map sources: https://tile.openstreetmap.org/17/31992/52014.png. Site location only: entrance, road access and detours not verified. Reviewed 2026-10-09T03:01:07.207905+00:00 Arkansas DEQ report page 2: #326, same address, general-area GPS 34.7818,-92.1294 (~96 m away): https://adeq.state.ar.us/downloads/webdatabases/inspectionsonline/079361-insp.pdf"
+  },
+  {
+    "opis_id": 52458,
+    "location_fingerprint": "d17bba4c8a79ab0d2ea5e9c9a5dcfeb02c0d64a87b2441b763fc07357ed1cfb6",
+    "latitude": 34.7811979,
+    "longitude": -92.1278341,
+    "policy": "manual-corridor-site-v1",
+    "identity_verified": true,
+    "source": "https://locations.pilotflyingj.com/us/ar/north-little-rock/3300-ar-391",
+    "evidence": "Branch 332, North Little Rock AR, I-40 exit 161 match source. Official street address: 3300 AR-391, North Little Rock, AR 72117. Coordinates: 34.7811979,-92.1278341 (official_visible_coordinates). Independent placement review: Point (71.49,116.85) lies in store building at named Pilot fuel/forecourt plot, east of separate Petro property and north of Blue Beacon truck wash. Map sources: https://tile.openstreetmap.org/17/31993/52014.png. Site location only: entrance, road access and detours not verified. Reviewed 2026-10-09T03:01:07.207905+00:00"
+  }
+]

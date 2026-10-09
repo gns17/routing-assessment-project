@@ -16,6 +16,10 @@ Geoapify station experiments are complete with a negative conclusion for
 unattended nationwide enrichment. Further individual station searches are stopped.
 Geoapify remains the endpoint geocoder/router. No new live provider requests or
 OSM downloads have been made during core implementation.
+The subsequent [approved corridor investigation](docs/corridor-investigation.md)
+acquired a real 1,221.63-mile route and reviewed six station-site locations.
+Its coordinate artifact awaits explicit import approval; production remains
+unresolved and no real ORM-backed multi-stop success is claimed yet.
 
 ## Setup and checks
 

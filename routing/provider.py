@@ -141,7 +141,10 @@ def road_weights(geometry, properties, miles):
     ):
         raise ValueError
     weights = [w * miles / total for w in weights]
-    weights[-1] += miles - sum(weights)
+    # A rounded terminal step may be zero. Correct a positive segment so
+    # sub-precision sum drift cannot turn that zero into negative mileage.
+    largest = max(range(len(weights)), key=weights.__getitem__)
+    weights[largest] += miles - sum(weights)
     return tuple(weights)
 
 

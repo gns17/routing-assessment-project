@@ -12,7 +12,14 @@ from rest_framework.test import APIClient
 from routing.geometry import Candidate, match_stations
 from routing.models import DatasetState, Station
 from routing.planning import plan
-from routing.provider import Geoapify, Location, ProviderError, Route, road_weights
+from routing.provider import (
+    METERS_PER_MILE,
+    Geoapify,
+    Location,
+    ProviderError,
+    Route,
+    road_weights,
+)
 from routing.repository import StationRepository
 from tests.test_api import request_plan
 from tests.test_coordinate_import import record
@@ -311,3 +318,24 @@ def test_inflight_snapshot_is_never_cached_under_new_revision(tmp_path):
         new["total_fuel_cost"] == "40.00"
         and old["total_fuel_cost"] != new["total_fuel_cost"]
     )
+
+
+def test_rounded_zero_terminal_step_never_becomes_negative():
+    geometry = line([[-101, 35], [-100.99999, 35], [-100.99998, 35], [-100.999979, 35]])
+    properties = {
+        "legs": [
+            {
+                "steps": [
+                    {"from_index": 0, "to_index": 1, "distance": 1},
+                    {"from_index": 1, "to_index": 2, "distance": 1},
+                    {"from_index": 2, "to_index": 3, "distance": 0},
+                    {"from_index": 3, "to_index": 3, "distance": 0},
+                ]
+            }
+        ]
+    }
+    miles = Decimal(2) / METERS_PER_MILE
+    weights = road_weights(geometry, properties, miles)
+    assert all(w >= 0 for w in weights) and weights[-1] == 0
+    assert sum(weights) == miles
+    assert match_stations(geometry, miles, [station(lon=-100.99998)], 1, weights)

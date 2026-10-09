@@ -1,0 +1,593 @@
+{
+  "schema_version": 1,
+  "status": "reviewed_coordinate_artifact_awaiting_import_approval",
+  "started_at": "2026-10-09T02:47:03+00:00",
+  "completed_at": "2026-10-09T03:07:27.364213+00:00",
+  "deadline": "2026-10-09T04:17:03+00:00",
+  "push": {
+    "repository": "gns17/routing-assessment-project",
+    "private_verified": true,
+    "branch": "feat/assessment-implementation",
+    "head": "4ebdf40957139eb6b4b7e1227f7e989ac9c25eee",
+    "all_five_commits_remote_verified": true
+  },
+  "usage": {
+    "http_attempts": 3,
+    "retries": 0,
+    "errors": 0,
+    "http_latencies_seconds": [
+      1.0741,
+      0.4137,
+      2.3647
+    ],
+    "total_http_latency_seconds": 3.8525,
+    "estimated_credits": 6,
+    "reserved_estimated_budget": 8,
+    "actual_billed_credits": null,
+    "billing_note": "No usage headers/account debit returned; estimate only. No additional usage/account API requests."
+  },
+  "route": {
+    "distance_miles": "1221.630055476020042949176807",
+    "distance_meters": 1966023,
+    "geometry_segments": 12071,
+    "mileage_method": "validated_provider_steps_within_step_interpolation",
+    "normalization_fix": {
+      "defect": "Roundoff correction on zero-mile terminal segment created a negative 2.2E-23-mile weight",
+      "fix": "Apply rounding correction to largest positive segment",
+      "reprocessed_saved_response": true,
+      "additional_http_attempts": 0,
+      "all_weights_nonnegative": true,
+      "saved_response_replay_verified": true
+    },
+    "live_provider_response_verified": true,
+    "full_drf_production_demo_verified": false
+  },
+  "reviewed_stations": [
+    {
+      "opis_id": 4446,
+      "csv_identity": {
+        "name": "LOVES TRAVEL STOP #200",
+        "address": "I-40 EXIT 74",
+        "city": "Amarillo",
+        "state": "TX",
+        "selected_price": "3.20900000",
+        "original_min_price": "3.20900000",
+        "original_max_price": "3.20900000",
+        "source_rows": [
+          653
+        ],
+        "location_fingerprint": "8b2fc50ff5722963ac669d71c797a4ba1e56085a8b464e76b899e7e1bee3fe5b"
+      },
+      "official_identity": {
+        "name": "Love's #200",
+        "address": "6930 I-40 E., Amarillo, TX 79120",
+        "source": "https://www.loves.com/locations/tx/amarillo/loves-travel-stop-amarillo-200",
+        "identity_basis": "Official OPIS 04446, branch 200, Amarillo TX, I-40 exit 74."
+      },
+      "coordinate": {
+        "latitude": 35.191927,
+        "longitude": -101.760945,
+        "method": "official_jsonld_geo",
+        "published_value": "35.191927,-101.760945",
+        "position_convention": "station site/store/forecourt; not validated entrance"
+      },
+      "independent_evidence": [
+        {
+          "source": "OpenStreetMap rendered map",
+          "url": "https://tile.openstreetmap.org/17/28485/51831.png",
+          "map_view": "https://www.openstreetmap.org/?mlat=35.191927&mlon=-101.760945#map=17/35.191927/-101.760945",
+          "attribution": "\u00a9 OpenStreetMap contributors"
+        },
+        {
+          "source": "OpenStreetMap rendered map",
+          "url": "https://tile.openstreetmap.org/17/28486/51831.png",
+          "map_view": "https://www.openstreetmap.org/?mlat=35.191927&mlon=-101.760945#map=17/35.191927/-101.760945",
+          "attribution": "\u00a9 OpenStreetMap contributors"
+        },
+        {
+          "source": "OpenStreetMap rendered map",
+          "url": "https://tile.openstreetmap.org/17/28486/51832.png",
+          "map_view": "https://www.openstreetmap.org/?mlat=35.191927&mlon=-101.760945#map=17/35.191927/-101.760945",
+          "attribution": "\u00a9 OpenStreetMap contributors"
+        }
+      ],
+      "placement_observation": "Point at pixel (248.47,237.75) in first tile lies in fuel-site/store plot; adjacent eastern tiles label Love's west of Whitaker Rd, distinct from nearby TA/Exxon.",
+      "classification": "accepted",
+      "accepted_scope": "identity and station-site coordinate, not navigable entrance or detour-inclusive access",
+      "reviewed_at": "2026-10-09T03:01:07.207905+00:00",
+      "imported": false,
+      "route_match": {
+        "route_miles": "290.859611",
+        "offset_miles": 0.045221,
+        "corridor_miles": 1
+      }
+    },
+    {
+      "opis_id": 7733,
+      "csv_identity": {
+        "name": "FLYING J TRAVEL PLAZA #723",
+        "address": "I-40, EXIT 76",
+        "city": "Amarillo",
+        "state": "TX",
+        "selected_price": "3.26566666",
+        "original_min_price": "3.26566666",
+        "original_max_price": "3.26566666",
+        "source_rows": [
+          1310
+        ],
+        "location_fingerprint": "a8f8b9faf8548724a68e5d009cd77c41bbf4ee77618e02fb3874c8d6a24ba21a"
+      },
+      "official_identity": {
+        "name": "Flying J #723",
+        "address": "9601 E I-40, Amarillo, TX 79118",
+        "source": "https://locations.pilotflyingj.com/us/tx/amarillo/9601-e-i-40",
+        "identity_basis": "Branch 723, Amarillo TX, I-40 exit 76 match source."
+      },
+      "coordinate": {
+        "latitude": 35.1937863,
+        "longitude": -101.7234389,
+        "method": "official_visible_coordinates",
+        "published_value": "35.1937863,-101.7234389",
+        "position_convention": "station site/store/forecourt; not validated entrance"
+      },
+      "independent_evidence": [
+        {
+          "source": "OpenStreetMap rendered map",
+          "url": "https://tile.openstreetmap.org/17/28499/51831.png",
+          "map_view": "https://www.openstreetmap.org/?mlat=35.1937863&mlon=-101.7234389#map=17/35.1937863/-101.7234389",
+          "attribution": "\u00a9 OpenStreetMap contributors"
+        }
+      ],
+      "placement_observation": "Point (160.30,25.69) lies in store building/forecourt plot beside named Flying J fuel icons north of I-40, distinct from nearby fuel station west of street.",
+      "classification": "accepted",
+      "accepted_scope": "identity and station-site coordinate, not navigable entrance or detour-inclusive access",
+      "reviewed_at": "2026-10-09T03:01:07.207905+00:00",
+      "imported": false,
+      "route_match": {
+        "route_miles": "292.979032",
+        "offset_miles": 0.072083,
+        "corridor_miles": 1
+      }
+    },
+    {
+      "opis_id": 4227,
+      "csv_identity": {
+        "name": "LOVES TRAVEL STOP #203",
+        "address": "I-40, EXIT 140",
+        "city": "Oklahoma City",
+        "state": "OK",
+        "selected_price": "3.35566666",
+        "original_min_price": "3.35566666",
+        "original_max_price": "3.35566666",
+        "source_rows": [
+          623
+        ],
+        "location_fingerprint": "d1bb2adc60b19cf277193ccf98cb3430377f6698656f26f771442969daaf99e0"
+      },
+      "official_identity": {
+        "name": "Love's #203",
+        "address": "800 S Morgan Rd., Oklahoma City, OK 73128",
+        "source": "https://www.loves.com/locations/ok/oklahoma-city/loves-travel-stop-oklahoma-city-203",
+        "identity_basis": "Official OPIS 04227, branch 203, Oklahoma City OK, I-40 exit 140."
+      },
+      "coordinate": {
+        "latitude": 35.457659,
+        "longitude": -97.688649,
+        "method": "official_jsonld_geo",
+        "published_value": "35.457659,-97.688649",
+        "position_convention": "station site/store/forecourt; not validated entrance"
+      },
+      "independent_evidence": [
+        {
+          "source": "OpenStreetMap rendered map",
+          "url": "https://tile.openstreetmap.org/17/29968/51713.png",
+          "map_view": "https://www.openstreetmap.org/?mlat=35.457659&mlon=-97.688649#map=17/35.457659/-97.688649",
+          "attribution": "\u00a9 OpenStreetMap contributors"
+        },
+        {
+          "source": "OpenStreetMap rendered map",
+          "url": "https://tile.openstreetmap.org/16/14984/25856.png",
+          "map_view": "https://www.openstreetmap.org/?mlat=35.457659&mlon=-97.688649#map=16/35.457659/-97.688649",
+          "attribution": "\u00a9 OpenStreetMap contributors"
+        }
+      ],
+      "placement_observation": "Point (165.97,88.54) in detailed tile, (82.99,172.27) in overview is inside named Love's Travel Stop fuel plot east of S Morgan Rd, distinct from Flying J on opposite side.",
+      "classification": "accepted",
+      "accepted_scope": "identity and station-site coordinate, not navigable entrance or detour-inclusive access",
+      "reviewed_at": "2026-10-09T03:01:07.207905+00:00",
+      "imported": false,
+      "route_match": {
+        "route_miles": "533.516811",
+        "offset_miles": 0.169401,
+        "corridor_miles": 1
+      }
+    },
+    {
+      "opis_id": 52468,
+      "csv_identity": {
+        "name": "FLYING J TRAVEL PLAZA #703",
+        "address": "I-40, EXIT 140",
+        "city": "Oklahoma City",
+        "state": "OK",
+        "selected_price": "3.30900000",
+        "original_min_price": "3.30900000",
+        "original_max_price": "3.30900000",
+        "source_rows": [
+          1607
+        ],
+        "location_fingerprint": "f78a526e01ee1c383d5790fabeb0a9d5d9fd47296ed40571f340d207c700d8f6"
+      },
+      "official_identity": {
+        "name": "Flying J #703",
+        "address": "701 S Morgan Rd, Oklahoma City, OK 73128",
+        "source": "https://locations.pilotflyingj.com/us/ok/oklahoma-city/701-s-morgan-rd",
+        "identity_basis": "Branch 703, Oklahoma City OK, I-40 exit 140 match source."
+      },
+      "coordinate": {
+        "latitude": 35.4587888,
+        "longitude": -97.6904462,
+        "method": "official_visible_coordinates",
+        "published_value": "35.4587888,-97.6904462",
+        "position_convention": "station site/store/forecourt; not validated entrance"
+      },
+      "independent_evidence": [
+        {
+          "source": "OpenStreetMap rendered map",
+          "url": "https://tile.openstreetmap.org/17/29967/51712.png",
+          "map_view": "https://www.openstreetmap.org/?mlat=35.4587888&mlon=-97.6904462#map=17/35.4587888/-97.6904462",
+          "attribution": "\u00a9 OpenStreetMap contributors"
+        },
+        {
+          "source": "OpenStreetMap rendered map",
+          "url": "https://tile.openstreetmap.org/17/29968/51712.png",
+          "map_view": "https://www.openstreetmap.org/?mlat=35.4587888&mlon=-97.6904462#map=17/35.4587888/-97.6904462",
+          "attribution": "\u00a9 OpenStreetMap contributors"
+        }
+      ],
+      "placement_observation": "Point (254.46,215.26) at east edge of first tile lies in building/forecourt of named Flying J Travel Center west of S Morgan Rd; adjacent tile confirms fuel plot, distinct from Love's.",
+      "classification": "accepted",
+      "accepted_scope": "identity and station-site coordinate, not navigable entrance or detour-inclusive access",
+      "reviewed_at": "2026-10-09T03:01:07.207905+00:00",
+      "imported": false,
+      "route_match": {
+        "route_miles": "533.416479",
+        "offset_miles": 0.090575,
+        "corridor_miles": 1
+      }
+    },
+    {
+      "opis_id": 6755,
+      "csv_identity": {
+        "name": "PETRO STOPPING CENTER #326",
+        "address": "I-40, EXIT 161 & SR-391",
+        "city": "North Little Rock",
+        "state": "AR",
+        "selected_price": "3.20733333",
+        "original_min_price": "3.20733333",
+        "original_max_price": "3.20733333",
+        "source_rows": [
+          1050
+        ],
+        "location_fingerprint": "34b3c3ea8ab98917df872badfe35e57ca31c300e9e3fb4225e0c5a1842c6baa2"
+      },
+      "official_identity": {
+        "name": "Petro N. Little Rock #0326",
+        "address": "3205 Valentine Road, North Little Rock, AR 72117-9491",
+        "source": "https://www.ta-petro.com/location/ar/petro-n-little-rock/",
+        "identity_basis": "Branch 0326 equals CSV 326, North Little Rock AR, I-40 exit 161."
+      },
+      "coordinate": {
+        "latitude": 34.781,
+        "longitude": -92.1298,
+        "method": "official_jsonld_geo",
+        "published_value": "34.78100000000000,-92.12980000000000",
+        "position_convention": "station site/store/forecourt; not validated entrance"
+      },
+      "independent_evidence": [
+        {
+          "source": "OpenStreetMap rendered map",
+          "url": "https://tile.openstreetmap.org/17/31992/52014.png",
+          "map_view": "https://www.openstreetmap.org/?mlat=34.781&mlon=-92.1298#map=17/34.781/-92.1298",
+          "attribution": "\u00a9 OpenStreetMap contributors"
+        },
+        {
+          "source": "Arkansas DEQ July 9 2014 inspection, page 2",
+          "url": "https://adeq.state.ar.us/downloads/webdatabases/inspectionsonline/079361-insp.pdf",
+          "branch": 326,
+          "address": "3205 Valentine Rd",
+          "gps_latitude": 34.7818,
+          "gps_longitude": -92.1294,
+          "precision_note": "General Area; historical site evidence, not entrance",
+          "distance_to_selected_coordinate_meters": 96.17
+        }
+      ],
+      "placement_observation": "Point (144.25,139.31) lies within mapped truck-stop forecourt/fuel plot with Shell pumps (official Petro page also identifies Shell); independent Arkansas DEQ facility GPS corroborates site.",
+      "classification": "accepted",
+      "accepted_scope": "identity and station-site coordinate, not navigable entrance or detour-inclusive access",
+      "reviewed_at": "2026-10-09T03:01:07.207905+00:00",
+      "imported": false,
+      "route_match": {
+        "route_miles": "884.396169",
+        "offset_miles": 0.248132,
+        "corridor_miles": 1
+      }
+    },
+    {
+      "opis_id": 52458,
+      "csv_identity": {
+        "name": "PILOT TRAVEL CENTER #332",
+        "address": "I-40, EXIT 161 & SR-391",
+        "city": "North Little Rock",
+        "state": "AR",
+        "selected_price": "3.23700000",
+        "original_min_price": "3.23700000",
+        "original_max_price": "3.23900000",
+        "source_rows": [
+          1599,
+          1600
+        ],
+        "location_fingerprint": "d17bba4c8a79ab0d2ea5e9c9a5dcfeb02c0d64a87b2441b763fc07357ed1cfb6"
+      },
+      "official_identity": {
+        "name": "Pilot #332",
+        "address": "3300 AR-391, North Little Rock, AR 72117",
+        "source": "https://locations.pilotflyingj.com/us/ar/north-little-rock/3300-ar-391",
+        "identity_basis": "Branch 332, North Little Rock AR, I-40 exit 161 match source."
+      },
+      "coordinate": {
+        "latitude": 34.7811979,
+        "longitude": -92.1278341,
+        "method": "official_visible_coordinates",
+        "published_value": "34.7811979,-92.1278341",
+        "position_convention": "station site/store/forecourt; not validated entrance"
+      },
+      "independent_evidence": [
+        {
+          "source": "OpenStreetMap rendered map",
+          "url": "https://tile.openstreetmap.org/17/31993/52014.png",
+          "map_view": "https://www.openstreetmap.org/?mlat=34.7811979&mlon=-92.1278341#map=17/34.7811979/-92.1278341",
+          "attribution": "\u00a9 OpenStreetMap contributors"
+        }
+      ],
+      "placement_observation": "Point (71.49,116.85) lies in store building at named Pilot fuel/forecourt plot, east of separate Petro property and north of Blue Beacon truck wash.",
+      "classification": "accepted",
+      "accepted_scope": "identity and station-site coordinate, not navigable entrance or detour-inclusive access",
+      "reviewed_at": "2026-10-09T03:01:07.207905+00:00",
+      "imported": false,
+      "route_match": {
+        "route_miles": "884.510260",
+        "offset_miles": 0.249197,
+        "corridor_miles": 1
+      }
+    }
+  ],
+  "classifications": {
+    "accepted_site_coordinates": 6,
+    "ambiguous": 0,
+    "rejected_selected_records": 0
+  },
+  "rejected_incidental_listing_candidates": [
+    {
+      "for_opis_id": 4446,
+      "wrong_branch": 250,
+      "reason": "Wrong Amarillo Love's branch/address/exit; source record identifies #200, not #250.",
+      "source": "https://maps.apple.com/place?place-id=IE6A516953E81A764"
+    },
+    {
+      "for_opis_id": 4446,
+      "wrong_branch": 901,
+      "reason": "Speedco at exit 76 is not Love's #200 at exit 74; no price substitution.",
+      "source": "https://carrieratlas.com/truckstops/tx/amarillo/loves-speedco-amarillo-901"
+    }
+  ],
+  "route_coverage": {
+    "scope": "six manually reviewed stations only",
+    "complete_csv_coverage": false,
+    "matched_stations": 6,
+    "positions": [
+      {
+        "opis_id": 4446,
+        "route_miles": "290.859611",
+        "offset_miles": 0.04522054592082213
+      },
+      {
+        "opis_id": 7733,
+        "route_miles": "292.979032",
+        "offset_miles": 0.07208264575522717
+      },
+      {
+        "opis_id": 52468,
+        "route_miles": "533.416479",
+        "offset_miles": 0.09057487338522252
+      },
+      {
+        "opis_id": 4227,
+        "route_miles": "533.516811",
+        "offset_miles": 0.16940105796309912
+      },
+      {
+        "opis_id": 6755,
+        "route_miles": "884.396169",
+        "offset_miles": 0.24813249096696768
+      },
+      {
+        "opis_id": 52458,
+        "route_miles": "884.510260",
+        "offset_miles": 0.24919674276786796
+      }
+    ],
+    "gaps": [
+      {
+        "from_miles": "0",
+        "to_miles": "290.859611",
+        "distance_miles": "290.859611",
+        "exceeds_500_miles": false
+      },
+      {
+        "from_miles": "290.859611",
+        "to_miles": "292.979032",
+        "distance_miles": "2.119421",
+        "exceeds_500_miles": false
+      },
+      {
+        "from_miles": "292.979032",
+        "to_miles": "533.416479",
+        "distance_miles": "240.437447",
+        "exceeds_500_miles": false
+      },
+      {
+        "from_miles": "533.416479",
+        "to_miles": "533.516811",
+        "distance_miles": "0.100332",
+        "exceeds_500_miles": false
+      },
+      {
+        "from_miles": "533.516811",
+        "to_miles": "884.396169",
+        "distance_miles": "350.879358",
+        "exceeds_500_miles": false
+      },
+      {
+        "from_miles": "884.396169",
+        "to_miles": "884.510260",
+        "distance_miles": "0.114091",
+        "exceeds_500_miles": false
+      },
+      {
+        "from_miles": "884.510260",
+        "to_miles": "1221.630055476020042949176807",
+        "distance_miles": "337.119795476020042949176807",
+        "exceeds_500_miles": false
+      }
+    ],
+    "largest_gap_miles": "350.879358",
+    "feasible_500_mile_model": true,
+    "matching_seconds": 0.021741,
+    "corridor_sensitivity": [
+      {
+        "corridor_miles": 0.1,
+        "matched_ids": [
+          4446,
+          7733,
+          52468
+        ],
+        "feasible": false
+      },
+      {
+        "corridor_miles": 0.25,
+        "matched_ids": [
+          4446,
+          7733,
+          52468,
+          4227,
+          6755,
+          52458
+        ],
+        "feasible": true,
+        "cost": "232.4410604630179189498926269",
+        "stops": 4
+      },
+      {
+        "corridor_miles": 0.5,
+        "matched_ids": [
+          4446,
+          7733,
+          52468,
+          4227,
+          6755,
+          52458
+        ],
+        "feasible": true,
+        "cost": "232.4410604630179189498926269",
+        "stops": 4
+      },
+      {
+        "corridor_miles": 1.0,
+        "matched_ids": [
+          4446,
+          7733,
+          52468,
+          4227,
+          6755,
+          52458
+        ],
+        "feasible": true,
+        "cost": "232.4410604630179189498926269",
+        "stops": 4
+      }
+    ]
+  },
+  "fuel_plan": {
+    "purchases": [
+      {
+        "station_id": "4446",
+        "miles": "290.859611",
+        "price": "3.20900000",
+        "gallons": "29.0859611",
+        "cost": "93.336849169900000",
+        "arrival_gallons": "20.9140389",
+        "departure_gallons": "50.0000000"
+      },
+      {
+        "station_id": "7733",
+        "miles": "292.979032",
+        "price": "3.26566666",
+        "gallons": "0.2119421",
+        "cost": "0.692132249820386",
+        "arrival_gallons": "49.7880579",
+        "departure_gallons": "50.0000000"
+      },
+      {
+        "station_id": "52468",
+        "miles": "533.416479",
+        "price": "3.30900000",
+        "gallons": "9.1417137",
+        "cost": "30.249930633300000",
+        "arrival_gallons": "25.9562553",
+        "departure_gallons": "35.0979690"
+      },
+      {
+        "station_id": "6755",
+        "miles": "884.396169",
+        "price": "3.20733333",
+        "gallons": "33.7233886476020042949176807",
+        "cost": "108.1621484099975329498926269",
+        "arrival_gallons": "0E-7",
+        "departure_gallons": "33.7233886476020042949176807"
+      }
+    ],
+    "gallons_consumed": "122.1630055476020042949176807",
+    "gallons_purchased": "72.1630055476020042949176807",
+    "total_cost": "232.4410604630179189498926269",
+    "ending_gallons": "0E-25"
+  },
+  "production_database": {
+    "revision": 1,
+    "station_count": 6626,
+    "accepted_coordinate_count": 0,
+    "unchanged": true,
+    "database_sha256": "e4e4665ce6f57fb87c6f19c3d2383e43acd86468b70d7e3aee25a828e657edd6"
+  },
+  "csv_sha256": "c704371f141ded9c54df6c32d488a0ba2ceb589f88c936c967daa5330e0cd241",
+  "limitations": [
+    "Site coordinates corroborated visually against independent OSM mapping, not independently surveyed.",
+    "Road access/entrances and access detours unverified and excluded.",
+    "Coverage is only the reviewed subset; unresolved CSV locations have no complete geographic denominator.",
+    "Snapshot prices are preserved, including minimum-price ambiguity; initial tank cost unknown.",
+    "The small 0.2119421-gallon stop is allowed by fuel-cost-only optimization; stop penalties/minimum fills are not modeled.",
+    "No coordinates imported; production API still lacks priced station coverage."
+  ],
+  "elapsed_minutes": 20.41,
+  "verification": {
+    "tests_passed": 144,
+    "ruff_lint": "passed",
+    "django_system_checks": "passed",
+    "migration_drift": "none",
+    "saved_provider_response_replay": "passed",
+    "production_sqlite_sha256_unchanged": true,
+    "coordinate_import_executed": false,
+    "live_attempts_total": 3,
+    "live_retries": 0
+  },
+  "reviewed_by": "Assistant document and visual map review; explicit user import approval pending"
+}
