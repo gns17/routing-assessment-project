@@ -5,12 +5,13 @@ accepts only `start` and `finish` strings; the response includes route GeoJSON,
 recommended purchases, fuel totals, dataset revision, warnings and a minimal
 Leaflet `map_url`. The tested implementation uses Django ORM + SQLite.
 
-**Coverage limitation:** the source CSV contains no coordinates. Its 6,626 US
-stations import successfully as pending, but no real reviewed coordinates have
-been imported. Trips requiring refueling therefore return an explicit
-`insufficient_station_coverage` error until enough genuine stations are reconciled.
-The successful long-route tests use isolated synthetic fixtures; these are never
-loaded into the demonstration database. This is not nationwide optimization.
+**Coverage limitation:** a fresh CSV import has 6,626 US stations with no coordinates.
+The six-record [reviewed artifact](data/corridor-reviewed-coordinates.json) is approved
+for **local development** and was imported into local SQLite (revision 2), leaving
+6,620 stations unresolved. The recorded Albuquerque–Nashville route now passes the
+actual DRF/ORM pipeline offline; other routes may still return explicit
+`insufficient_station_coverage` errors. This is optimization among reviewed candidates,
+not nationwide coverage. Synthetic fixtures remain isolated tests.
 
 Geoapify station experiments are complete with a negative conclusion for
 unattended nationwide enrichment. Further individual station searches are stopped.
@@ -18,8 +19,9 @@ Geoapify remains the endpoint geocoder/router. No new live provider requests or
 OSM downloads have been made during core implementation.
 The subsequent [approved corridor investigation](docs/corridor-investigation.md)
 acquired a real 1,221.63-mile route and reviewed six station-site locations.
-Its coordinate artifact awaits explicit import approval; production remains
-unresolved and no real ORM-backed multi-stop success is claimed yet.
+The approved [local import/offline milestone](docs/corridor-local-integration.md)
+now validates the ORM-backed multi-stop API using saved responses. A fresh live
+DRF request and browser rendering remain unverified.
 
 ## Setup and checks
 
@@ -29,6 +31,9 @@ Use Python 3.13 and `uv`. Dependencies are pinned by `uv.lock`.
 uv sync
 uv run python manage.py migrate
 uv run python manage.py import_fuel_prices --full-snapshot
+# Reviewed six-station fixture for local development only:
+uv run python manage.py import_station_coordinates data/corridor-reviewed-coordinates.json --reviewed --dry-run
+uv run python manage.py import_station_coordinates data/corridor-reviewed-coordinates.json --reviewed
 uv run pytest
 uv run ruff check .
 uv run ruff format --check .
@@ -88,8 +93,9 @@ coordinates and accepted/current enrichment; coordinate indexes support filterin
 JSON list. Each entry requires `opis_id`, `location_fingerprint`, `latitude`,
 `longitude`, `policy`, `identity_verified: true`, `source`, and `evidence`.
 Explicitly synthetic, unknown, inactive, invalid or stale records reject the whole
-artifact. Repeating unchanged records is idempotent. This command neither searches
-for stations nor validates a human identity claim automatically. Do not import
+artifact. Repeating unchanged records is idempotent. Add `--dry-run` to perform the same validation and report exact changes without
+writes. This command neither searches for stations nor validates an identity claim
+automatically. Do not import
 fixtures as real station matches. No unattended nationwide enrichment is implemented.
 
 ## Assumptions and limits
@@ -100,6 +106,9 @@ fixtures as real station matches. No unattended nationwide enrichment is impleme
 - Prices are assumed USD per US gallon for compatible fuel. The CSV does not
   establish fuel grade, observation date or current availability. Minimum price
   selection is optimistic when duplicate records disagree.
+- The current corridor includes a 0.212-gallon purchase under the zero-stop-penalty
+  model. Minimum fills and operational stop costs are not modeled; the small
+  purchase can be impractical despite reducing modeled fuel expenditure.
 - Optimization is mathematically optimal within the supplied fixed-route model,
   with divisible fuel, unlimited supply and no stop penalties. It does not choose
   the cheapest route across the road network.

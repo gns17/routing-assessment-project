@@ -15,6 +15,11 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument("path", type=Path)
         parser.add_argument(
+            "--dry-run",
+            action="store_true",
+            help="Validate and report changes without writing",
+        )
+        parser.add_argument(
             "--reviewed",
             action="store_true",
             help="Confirm the artifact's identities/coordinates were reviewed",
@@ -95,6 +100,26 @@ class Command(BaseCommand):
                     for key, value in values.items():
                         setattr(station, key, value)
                     changes.append(station)
+            if options["dry_run"]:
+                revision = (
+                    DatasetState.objects.filter(pk=1)
+                    .values_list("revision", flat=True)
+                    .first()
+                    or 0
+                )
+                self.stdout.write(
+                    json.dumps(
+                        {
+                            "dry_run": True,
+                            "opis_ids": sorted(ids),
+                            "would_update_ids": sorted(s.opis_id for s in changes),
+                            "would_accept": len(changes),
+                            "current_revision": revision,
+                            "would_increment_revision": bool(changes),
+                        }
+                    )
+                )
+                return
             Station.objects.bulk_update(
                 changes,
                 [

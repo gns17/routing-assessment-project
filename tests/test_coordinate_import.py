@@ -1,3 +1,4 @@
+import io
 import json
 
 import pytest
@@ -66,3 +67,58 @@ def test_coordinate_rejection(tmp_path, change):
 def test_explicit_review_gate(tmp_path):
     with pytest.raises(CommandError, match="reviewed"):
         call_command("import_station_coordinates", "unused.json")
+
+
+def test_dry_run_validates_without_station_or_revision_writes(tmp_path, monkeypatch):
+    import_csv(source(tmp_path, [row()]))
+    item = Station.objects.get()
+    before = list(Station.objects.values())
+    state = list(DatasetState.objects.values())
+    path = artifact(tmp_path, record(item))
+
+    def fail(*args, **kwargs):
+        raise AssertionError("Dry run must never write")
+
+    monkeypatch.setattr(Station.objects, "bulk_update", fail)
+    output = io.StringIO()
+    call_command(
+        "import_station_coordinates",
+        str(path),
+        reviewed=True,
+        dry_run=True,
+        stdout=output,
+    )
+    result = json.loads(output.getvalue())
+    assert result["would_accept"] == 1 and result["would_update_ids"] == [item.opis_id]
+    assert result["would_increment_revision"]
+    assert list(Station.objects.values()) == before
+    assert list(DatasetState.objects.values()) == state
+
+
+def test_dry_run_reports_no_changes_after_identical_import(tmp_path):
+    import_csv(source(tmp_path, [row()]))
+    path = artifact(tmp_path, record(Station.objects.get()))
+    call_command("import_station_coordinates", str(path), reviewed=True)
+    output = io.StringIO()
+    call_command(
+        "import_station_coordinates",
+        str(path),
+        reviewed=True,
+        dry_run=True,
+        stdout=output,
+    )
+    result = json.loads(output.getvalue())
+    assert result["would_accept"] == 0 and not result["would_increment_revision"]
+
+
+def test_dry_run_rejects_stale_identity(tmp_path):
+    import_csv(source(tmp_path, [row()]))
+    entry = {**record(Station.objects.get()), "location_fingerprint": "f" * 64}
+    with pytest.raises(CommandError, match="stale"):
+        call_command(
+            "import_station_coordinates",
+            str(artifact(tmp_path, entry)),
+            reviewed=True,
+            dry_run=True,
+        )
+    assert Station.objects.get().latitude is None
