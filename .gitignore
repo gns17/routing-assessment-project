@@ -21,6 +21,7 @@ staticfiles/
 .coverage
 htmlcov/
 .ruff_cache/
+.cache/
 
 # IDE / OS
 .vscode/

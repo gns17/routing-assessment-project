@@ -20,3 +20,8 @@ dev = [
     "pytest-django>=4.14.0",
     "ruff>=0.16.10",
 ]
+
+[tool.ruff.lint.per-file-ignores]
+# Django declares schema operations/Meta constraints as class-level lists.
+"**/migrations/*.py" = ["RUF012"]
+"routing/models.py" = ["RUF012"]
