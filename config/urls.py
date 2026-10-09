@@ -14,9 +14,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
+
 from django.urls import path
 
+from routing.views import map_view, route_view
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("api/route/", route_view, name="route-plan"),
+    path("maps/<uuid:token>/", map_view, name="route-map"),
 ]

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Route and fuel stops</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>body { margin: 0; font-family: sans-serif; } #map { height: 80vh; } p { margin: 1rem; }</style>
+</head>
+<body>
+  <p>Fixed snapshot. Incomplete station coverage. Road access and detours are unverified.</p>
+  <p id="summary"></p>
+  <div id="map" aria-label="Route and recommended fuel stops"></div>
+  {{ payload|json_script:"route-data" }}
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const data = JSON.parse(document.getElementById('route-data').textContent);
+    document.getElementById('summary').textContent = `${data.distance_miles} miles; $${data.total_fuel_cost} purchased fuel; ${data.gallons_consumed} gallons consumed. Initial tank cost unknown and excluded. Dataset revision ${data.dataset_revision}.`;
+    const map = L.map('map');
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    const route = L.geoJSON(data.route).addTo(map);
+    map.fitBounds(route.getBounds(), {maxZoom: 14});
+    const lines = data.route.geometry.type === 'LineString' ? [data.route.geometry.coordinates] : data.route.geometry.coordinates;
+    for (const [point, label] of [[lines[0][0], 'Start'], [lines.at(-1).at(-1), 'Finish']]) {
+      L.circleMarker([point[1], point[0]]).addTo(map).bindPopup(label);
+    }
+    for (const [index, stop] of data.fuel_stops.entries()) {
+      const label = document.createElement('span');
+      label.textContent = `Stop ${index + 1}: ${stop.name} (OPIS ${stop.opis_id}), ${stop.gallons_purchased} gallons, $${stop.purchase_cost}; ${stop.route_miles} route miles`;
+      L.marker([stop.latitude, stop.longitude]).addTo(map).bindPopup(label);
+    }
+  </script>
+</body>
+</html>
