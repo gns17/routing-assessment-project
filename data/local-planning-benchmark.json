@@ -1,0 +1,72 @@
+{
+  "fixture_type": "synthetic_only_disposable_database",
+  "real_provider_requests": 0,
+  "station_count": 6626,
+  "repetitions": 3,
+  "python": "3.13.16",
+  "platform": "Darwin",
+  "workloads": [
+    {
+      "name": "short",
+      "route_miles": 200,
+      "segments": 250,
+      "eligible_candidates": 1040,
+      "matched_stations": 1040,
+      "fuel_stops": 0,
+      "payload_bytes": 4329,
+      "cold_median_ms": 188.576,
+      "cold_max_ms": 203.533,
+      "warm_median_ms": 25.234,
+      "warm_max_ms": 25.878,
+      "select_counts": [
+        2,
+        2,
+        2
+      ],
+      "mock_http_attempts": 9,
+      "python_peak_mib": 2.432
+    },
+    {
+      "name": "multiple_stops",
+      "route_miles": 1300,
+      "segments": 2000,
+      "eligible_candidates": 1894,
+      "matched_stations": 1894,
+      "fuel_stops": 5,
+      "payload_bytes": 30108,
+      "cold_median_ms": 865.313,
+      "cold_max_ms": 877.685,
+      "warm_median_ms": 58.104,
+      "warm_max_ms": 58.34,
+      "select_counts": [
+        2,
+        2,
+        2
+      ],
+      "mock_http_attempts": 9,
+      "python_peak_mib": 3.82
+    },
+    {
+      "name": "large_geometry",
+      "route_miles": 2600,
+      "segments": 5000,
+      "eligible_candidates": 1894,
+      "matched_stations": 1894,
+      "fuel_stops": 10,
+      "payload_bytes": 75052,
+      "cold_median_ms": 2029.786,
+      "cold_max_ms": 2090.861,
+      "warm_median_ms": 97.305,
+      "warm_max_ms": 98.723,
+      "select_counts": [
+        2,
+        2,
+        2
+      ],
+      "mock_http_attempts": 9,
+      "python_peak_mib": 6.703
+    }
+  ],
+  "sqlite_query_plan": "3 0 162 SEARCH routing_station USING INDEX routing_station_longitude_0a15f66a (longitude>? AND longitude<?)",
+  "process_peak_rss_mib": 132.484
+}

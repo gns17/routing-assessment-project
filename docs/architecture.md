@@ -9,10 +9,12 @@ seed data. Conventional Django persistence and durable enrichment progress are
 deliberate benefits; Django does not require a database and ORM speed is not assumed.
 Measure query and processing performance on the expected workload.
 
-The architecture is approved, but complete application implementation is paused.
-Issue A is the first and only initial implementation task. No external geocoding
-requests may run until its execution plan and usage budget are approved. Review
-the spike's results before relying on nationwide enrichment.
+Core application implementation is approved and underway. GNS-5 is complete
+with a negative conclusion for unattended nationwide station enrichment.
+Geoapify remains the endpoint geocoding/routing provider, not an approved
+automatic station-enrichment strategy. GNS-12 is a nonblocking New Mexico-only
+offline OSM experiment (60–90 minutes); downloading requires separate approval.
+No additional live Geoapify calls or OSM downloads are currently authorized.
 
 ## Evidence and dataset handling
 
@@ -67,21 +69,22 @@ policy separately. Price-only reimports preserve accepted coordinates and requir
 zero geocoding calls. Changed location inputs invalidate enrichment and make it
 ineligible for runtime planning until reviewed/re-enriched.
 
-Resume offline geocoding from database status and matching fingerprint/policy,
-skipping completed unchanged records. Distinguish accepted, ambiguous, rejected,
-pending, and retryable failures; do not silently retry terminal rejected matches.
-A city centroid is not a station match. Start with one enrichment writer.
-Serialize offline mutating commands initially rather than supporting concurrent
-imports/enrichment writers; runtime readers still use the shared database.
-Read query inputs, make the Geoapify call outside any transaction, then use a short
-transaction to conditionally save the result if the station's fingerprint/policy
-and eligibility still match. Persist status/errors/provenance and bump the dataset
-revision when planner-visible state changes. Ignore stale responses. No network
-waits, long sleeps, or provider retries occur while holding a write transaction.
+Current enrichment boundary: import an explicitly reviewed JSON coordinate artifact
+using `import_station_coordinates --reviewed`. Each record must carry OPIS ID,
+current location fingerprint, bounded coordinates, policy, source, identity
+attestation, and evidence. Unknown, inactive, stale, unverified or explicitly
+synthetic entries reject the whole artifact. Updates and dataset revision commit
+together; repeating unchanged evidence is idempotent. This command makes no HTTP
+requests. Human review of identity and station placement remains essential: an
+attestation flag does not establish correctness by itself. No real coordinates
+have been imported. The stored pending/ambiguous/rejected statuses preserve
+unresolved records without making them eligible for planning.
 
-SQLite permits limited concurrent writing; a lost response before persistence
-can still cause a repeated external call. Database state is not exactly-once
-external execution. No distributed locks or worker queues are needed.
+Any future approved resolver reads inputs before HTTP and writes results in a
+short transaction only if inputs still match. No HTTP, sleeps or retries may run
+inside database transactions. Run one offline mutating command at a time;
+concurrent ingestion writers and exactly-once external execution are out of scope.
+No automatic Geoapify enrichment loop is implemented after the negative spike.
 
 The assignment still uses a fixed price snapshot. Reimport supports price changes
 without re-geocoding, but live pricing feeds, scheduled updates, CRUD endpoints,
@@ -114,9 +117,16 @@ queries; never query per candidate or instantiate unnecessary model objects.
 Read dataset revision and candidates in a short consistent read transaction,
 after all provider requests have completed; finish the transaction before precise
 matching and optimization. No long-lived database read snapshot crosses HTTP work.
-Use detailed geometry and cumulative road distances, not straight-line endpoint
-distance. Handle route loops deterministically. The corridor is configurable;
-its default remains undecided until enrichment and matching tests are reviewed.
+Use detailed geometry, cumulative haversine segment lengths and local segment
+projection. Normalize validated provider leg/step distances into segment weights
+and interpolate only within each step. Missing step data explicitly falls back to
+geometry proportions scaled to total road mileage. Neither method proves road
+access or exact within-step chainage; reject inconsistent supplied step metadata.
+Round chainage to a micro-mile to suppress floating noise, not to imply accuracy.
+Reject disconnected geometry; preserve separate visits on route loops. Handle route loops deterministically. The corridor is configurable;
+STATION_CORRIDOR_MILES defaults provisionally to 1 for local development,
+not as a calibrated claim. Real-data accuracy review is still required before
+settling the operational default.
 
 ## Fuel model and response
 
@@ -154,13 +164,18 @@ persisted dataset revision, corridor, and fuel policy. Read the shared revision
 before plan-cache lookup so all workers stop selecting stale keys after imports
 or accepted-enrichment changes commit. Return the revision actually used to read
 candidates; an in-flight request may finish against its older consistent snapshot.
-Changes invalidate plans without invalidating routes. Process-local caches reset
+Changes invalidate plans without invalidating routes. Process-local route/plan caches reset
 on restart; no startup-loaded station collection or automatic reload is required.
+Map snapshots use Django's built-in file cache under the ignored .cache/maps
+directory, shared by workers on the same machine, with a one-hour TTL. This fixes
+cross-worker map URLs without another service. Multi-host sharing, cleanup beyond
+Django cache eviction, and persistent/public map links are outside scope.
 
 Benchmark cold/warm short and cross-country routes, dense/sparse station coverage,
 ORM filtering/query counts and query plans, matching/optimization time, memory,
-payload size, external calls, and SQLite lock behavior. No performance result has
-been measured yet. Do not assume ORM or in-memory filtering is inherently faster.
+payload size, external calls, and SQLite lock behavior. Initial local measurements are recorded in docs/implementation-progress.md;
+synthetic geometry timings and a database with zero accepted coordinates do not
+establish nationwide production performance. Do not assume ORM or in-memory filtering is inherently faster.
 
 ## Validation and scope
 
