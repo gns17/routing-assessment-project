@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Route and fuel stops</title>
+  <link rel="icon" href="data:,">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <style>body { margin: 0; font-family: sans-serif; } #map { height: 80vh; } p { margin: 1rem; }</style>
 </head>
@@ -27,7 +28,7 @@
     }
     for (const [index, stop] of data.fuel_stops.entries()) {
       const label = document.createElement('span');
-      label.textContent = `Stop ${index + 1}: ${stop.name} (OPIS ${stop.opis_id}), ${stop.gallons_purchased} gallons, $${stop.purchase_cost}; ${stop.route_miles} route miles`;
+      label.textContent = `Stop ${index + 1}: ${stop.name} (OPIS ${stop.opis_id}), $${stop.price_per_gallon}/gallon, ${stop.gallons_purchased} gallons, $${stop.purchase_cost}; ${stop.route_miles} route miles`;
       L.marker([stop.latitude, stop.longitude]).addTo(map).bindPopup(label);
     }
   </script>

@@ -1,0 +1,239 @@
+{
+  "verification": "Actual Chrome with real Leaflet, real API response and approved OSM tiles; no SDK stub",
+  "checks": {
+    "real_leaflet_loaded": true,
+    "route_geometry_exact": true,
+    "rendered_route_path": true,
+    "purchase_markers": true,
+    "endpoint_markers": true,
+    "tiles_loaded": true,
+    "cost_summary": true,
+    "attribution": true,
+    "purchase_4446": true,
+    "purchase_7733": true,
+    "purchase_52468": true,
+    "purchase_6755": true
+  },
+  "map": {
+    "ready": true,
+    "leaflet_version": "1.9.4",
+    "route_paths": 3,
+    "svg_path_lengths": [
+      844,
+      45,
+      46
+    ],
+    "purchase_markers": [
+      {
+        "coordinates": [
+          35.191927,
+          -101.760945
+        ],
+        "text": "Stop 1: LOVES TRAVEL STOP #200 (OPIS 4446), $3.20900000/gallon, 29.085961 gallons, $93.34; 290.859611 route miles"
+      },
+      {
+        "coordinates": [
+          35.1937863,
+          -101.7234389
+        ],
+        "text": "Stop 2: FLYING J TRAVEL PLAZA #723 (OPIS 7733), $3.26566666/gallon, 0.211942 gallons, $0.69; 292.979032 route miles"
+      },
+      {
+        "coordinates": [
+          35.4587888,
+          -97.6904462
+        ],
+        "text": "Stop 3: FLYING J TRAVEL PLAZA #703 (OPIS 52468), $3.30900000/gallon, 9.141714 gallons, $30.25; 533.416479 route miles"
+      },
+      {
+        "coordinates": [
+          34.781,
+          -92.1298
+        ],
+        "text": "Stop 4: PETRO STOPPING CENTER #326 (OPIS 6755), $3.20733333/gallon, 33.723389 gallons, $108.16; 884.396169 route miles"
+      }
+    ],
+    "endpoint_markers": [
+      {
+        "coordinates": [
+          35.083957,
+          -106.651013
+        ],
+        "label": "Start"
+      },
+      {
+        "coordinates": [
+          36.162247,
+          -86.774367
+        ],
+        "label": "Finish"
+      }
+    ],
+    "loaded_tiles": 24,
+    "pending_tiles": 0,
+    "summary": "1221.630055 miles; $232.44 purchased fuel; 122.163006 gallons consumed. Initial tank cost unknown and excluded. Dataset revision 2.",
+    "attribution": " Leaflet | © OpenStreetMap contributors",
+    "embedded_payload_equals_api": true
+  },
+  "console_errors": [],
+  "network_failures": [],
+  "http_errors": [
+    {
+      "url": "http://127.0.0.1:8765/favicon.ico",
+      "status": 404
+    }
+  ],
+  "network": [
+    {
+      "url": "http://127.0.0.1:8765/maps/15d4104f-309c-4a7d-a318-c3e1ba0ee4dd/",
+      "status": 200,
+      "type": "Document"
+    },
+    {
+      "url": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",
+      "status": 200,
+      "type": "Stylesheet"
+    },
+    {
+      "url": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js",
+      "status": 200,
+      "type": "Script"
+    },
+    {
+      "url": "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+      "status": 200,
+      "type": "Image"
+    },
+    {
+      "url": "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+      "status": 200,
+      "type": "Image"
+    },
+    {
+      "url": "https://tile.openstreetmap.org/6/14/23.png",
+      "status": 200,
+      "type": "Image"
+    },
+    {
+      "url": "https://tile.openstreetmap.org/6/14/24.png",
+      "status": 200,
+      "type": "Image"
+    },
+    {
+      "url": "https://tile.openstreetmap.org/6/15/25.png",
+      "status": 200,
+      "type": "Image"
+    },
+    {
+      "url": "https://tile.openstreetmap.org/6/15/24.png",
+      "status": 200,
+      "type": "Image"
+    },
+    {
+      "url": "https://tile.openstreetmap.org/6/15/26.png",
+      "status": 200,
+      "type": "Image"
+    },
+    {
+      "url": "https://tile.openstreetmap.org/6/16/26.png",
+      "status": 200,
+      "type": "Image"
+    },
+    {
+      "url": "https://tile.openstreetmap.org/6/16/23.png",
+      "status": 200,
+      "type": "Image"
+    },
+    {
+      "url": "https://tile.openstreetmap.org/6/14/25.png",
+      "status": 200,
+      "type": "Image"
+    },
+    {
+      "url": "https://tile.openstreetmap.org/6/14/26.png",
+      "status": 200,
+      "type": "Image"
+    },
+    {
+      "url": "https://tile.openstreetmap.org/6/17/25.png",
+      "status": 200,
+      "type": "Image"
+    },
+    {
+      "url": "https://tile.openstreetmap.org/6/15/23.png",
+      "status": 200,
+      "type": "Image"
+    },
+    {
+      "url": "https://tile.openstreetmap.org/6/13/25.png",
+      "status": 200,
+      "type": "Image"
+    },
+    {
+      "url": "https://tile.openstreetmap.org/6/16/24.png",
+      "status": 200,
+      "type": "Image"
+    },
+    {
+      "url": "https://tile.openstreetmap.org/6/16/25.png",
+      "status": 200,
+      "type": "Image"
+    },
+    {
+      "url": "https://tile.openstreetmap.org/6/13/24.png",
+      "status": 200,
+      "type": "Image"
+    },
+    {
+      "url": "https://tile.openstreetmap.org/6/12/25.png",
+      "status": 200,
+      "type": "Image"
+    },
+    {
+      "url": "https://tile.openstreetmap.org/6/17/24.png",
+      "status": 200,
+      "type": "Image"
+    },
+    {
+      "url": "https://tile.openstreetmap.org/6/12/24.png",
+      "status": 200,
+      "type": "Image"
+    },
+    {
+      "url": "https://tile.openstreetmap.org/6/13/26.png",
+      "status": 200,
+      "type": "Image"
+    },
+    {
+      "url": "https://tile.openstreetmap.org/6/13/23.png",
+      "status": 200,
+      "type": "Image"
+    },
+    {
+      "url": "https://tile.openstreetmap.org/6/12/26.png",
+      "status": 200,
+      "type": "Image"
+    },
+    {
+      "url": "https://tile.openstreetmap.org/6/17/26.png",
+      "status": 200,
+      "type": "Image"
+    },
+    {
+      "url": "https://tile.openstreetmap.org/6/17/23.png",
+      "status": 200,
+      "type": "Image"
+    },
+    {
+      "url": "https://tile.openstreetmap.org/6/12/23.png",
+      "status": 200,
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:8765/favicon.ico",
+      "status": 404,
+      "type": "Other"
+    }
+  ],
+  "screenshot": "docs/images/final-live-corridor-map.png"
+}

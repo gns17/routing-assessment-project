@@ -1,5 +1,10 @@
 # GNS-8 / GNS-10 validation review
 
+Historical pre-corridor review: the pending live/map/default-calibration notes below
+are superseded by [final verification](final-verification.md) and the explicit
+[scoped completion review](submission-readiness.md). Original measurements and
+findings are preserved; completion does not imply nationwide station coverage.
+
 Reviewed against the existing Linear criteria on 2026-10-09 UTC. This is local
 verification only. No live Geoapify requests, OSM downloads or real-coordinate
 imports occurred. All synthetic fixtures remain in isolated tests or the disposable

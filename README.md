@@ -20,15 +20,16 @@ OSM downloads have been made during core implementation.
 The subsequent [approved corridor investigation](docs/corridor-investigation.md)
 acquired a real 1,221.63-mile route and reviewed six station-site locations.
 The approved [local import/offline milestone](docs/corridor-local-integration.md)
-now validates the ORM-backed multi-stop API using saved responses. A fresh live
-DRF request and browser rendering remain unverified.
+now validates the ORM-backed multi-stop API using saved responses. The [final verification](docs/final-verification.md) also passed a cold live DRF
+request and actual Chrome/Leaflet rendering. The three-request live budget is
+exhausted; tests and recorded-response replay need no additional provider calls.
 
 ## Setup and checks
 
 Use Python 3.13 and `uv`. Dependencies are pinned by `uv.lock`.
 
 ```sh
-uv sync
+uv sync --locked
 uv run python manage.py migrate
 uv run python manage.py import_fuel_prices --full-snapshot
 # Reviewed six-station fixture for local development only:
@@ -36,7 +37,7 @@ uv run python manage.py import_station_coordinates data/corridor-reviewed-coordi
 uv run python manage.py import_station_coordinates data/corridor-reviewed-coordinates.json --reviewed
 uv run pytest
 uv run ruff check .
-uv run ruff format --check .
+uv run ruff format --check routing tests spikes config/settings.py config/urls.py
 uv run python manage.py runserver
 ```
 
@@ -48,9 +49,41 @@ tests make no external requests. Optional settings: `DJANGO_SECRET_KEY` (stable
 key for deployments), `STATION_CORRIDOR_MILES` (positive miles, provisional default
 1). Current settings are for local development, with DEBUG enabled and local hosts.
 
+## Reproduce the reviewed corridor from a fresh checkout
+
+No local database, .env or virtual environment is supplied. Run the setup commands
+above: install locked dependencies, apply migrations, import the original CSV, dry-run
+and import the reviewed six-record artifact. This creates 6,626 stations, six accepted
+coordinates and dataset revision 2 entirely from committed source data.
+
+Copy `.env.example` to `.env` and set `GEOAPIFY_API_KEY` to **your own Geoapify key**
+for live use. Start Django and, from another terminal, request:
+
+```sh
+curl -X POST http://127.0.0.1:8000/api/route/ \
+  -H 'Content-Type: application/json' \
+  -d '{"start":"Albuquerque, NM","finish":"Nashville, TN"}'
+```
+
+The verified snapshot returns approximately 1,221.63 miles, six matched stations,
+four purchases, 72.163006 gallons purchased and $232.44 purchase expenditure.
+Provider data may change; exact reproducibility without a key or live calls is
+available through `uv run pytest tests/test_recorded_corridor.py -q`. That regression
+builds an isolated SQLite database from the committed CSV/coordinate artifact and
+uses the saved real provider responses. It never uses the existing development DB.
+The fresh running-server check used this same recorded-response approach; only the
+separately documented final live request consumed new Geoapify calls.
+
+Open the returned `map_url` to view actual Leaflet geometry/stops. Leaflet static
+assets and OSM tiles need browser internet access, independent of backend provider
+calls. Two nearby Amarillo markers overlap at the continent overview; zoom in or
+open their popups to inspect each purchase. Do not present recorded replies as a new
+live provider run. Agent workflows retain the explicit external-request approvals
+in AGENTS.md; no additional live calls were made for fresh-database testing.
+
 ## API and map
 
-Request body: `{"start": "Albuquerque, NM", "finish": "Santa Fe, NM"}`.
+Demonstration request: `{"start": "Albuquerque, NM", "finish": "Nashville, TN"}`.
 
 Responses expose `route` (GeoJSON Feature), `distance_miles`, `duration_seconds`,
 `fuel_stops`, `total_fuel_cost`, `gallons_consumed`, `gallons_purchased`,
@@ -60,6 +93,41 @@ rounded only for display. Stop rows include OPIS identity, address, coordinates,
 price, position/offset and purchases. Input errors return 400; unresolved or
 ambiguous endpoints, missing routes and inadequate fuel coverage return 422;
 provider/configuration failures return safe 502/503 errors without credentials.
+
+In Postman, create a **POST** request to `http://127.0.0.1:8000/api/route/`, choose
+Body → raw → JSON, and paste the demonstration request above. No application auth
+is required. After a 200 response, open the returned `map_url` in your browser.
+Use a newly returned URL: committed response URLs are expired local evidence,
+not hosted maps. See the [five-minute walkthrough draft](docs/loom-walkthrough.md).
+
+Selected fields from the verified response (not the complete response schema):
+
+```json
+{
+  "distance_miles": "1221.630055",
+  "total_fuel_cost": "232.44",
+  "gallons_consumed": "122.163006",
+  "gallons_purchased": "72.163006",
+  "ending_gallons": "0.000000",
+  "initial_tank_cost": null,
+  "dataset_revision": 2,
+  "coverage": {
+    "scope": "reviewed_candidates_only",
+    "complete_csv_coverage": false,
+    "eligible_candidates": 6,
+    "matched_stations": 6,
+    "route_visits": 6,
+    "largest_gap_miles": "350.879358",
+    "unbridgeable_gaps": []
+  }
+}
+```
+
+The [complete recorded live response](data/final-live-api-response.json) also
+contains full GeoJSON, four purchases, inventory, warnings and an expired map URL.
+Arbitrary US trips requiring refueling are **not generally supported** by six
+reviewed stations; 422 is an honest failure, not fulfillment of nationwide routing.
+Alaska/Hawaii endpoints are excluded by the contiguous-US provider policy.
 
 An uncached successful baseline makes at most two endpoint geocoding calls and
 one routing call, without retries. Endpoint caches last 24 hours, route and plan
@@ -93,10 +161,9 @@ coordinates and accepted/current enrichment; coordinate indexes support filterin
 JSON list. Each entry requires `opis_id`, `location_fingerprint`, `latitude`,
 `longitude`, `policy`, `identity_verified: true`, `source`, and `evidence`.
 Explicitly synthetic, unknown, inactive, invalid or stale records reject the whole
-artifact. Repeating unchanged records is idempotent. Add `--dry-run` to perform the same validation and report exact changes without
-writes. This command neither searches for stations nor validates an identity claim
-automatically. Do not import
-fixtures as real station matches. No unattended nationwide enrichment is implemented.
+artifact. Repeating unchanged records is idempotent. Add `--dry-run` to perform
+the same validation and report exact changes without writes. This command neither searches for stations nor validates an identity claim
+automatically. Do not import synthetic fixtures as real station matches. No unattended nationwide enrichment is implemented.
 
 ## Assumptions and limits
 
@@ -117,13 +184,31 @@ fixtures as real station matches. No unattended nationwide enrichment is impleme
 - Chainage uses local segment projection, validated provider step distances and
   interpolation within each step. Missing steps use a disclosed route-wide scaled
   geometry fallback. It is approximate; station-access detours and road access
-  are unverified. The one-mile development corridor is configurable and uncalibrated.
+  are unverified. The configurable one-mile assessment corridor is conservative
+  for the reviewed subset: all six offsets are below 0.25 mile, while a 0.1-mile
+  corridor makes the route infeasible. This is not nationwide accuracy calibration.
 - Endpoint resolution accepts confident, unambiguous contiguous-US results.
   Routes themselves may cross borders; no border-avoidance guarantee is claimed.
 - No live prices, schedulers, CRUD/admin interface, PostgreSQL, PostGIS, Redis,
   Celery or nationwide geocoding is included.
 
-See [architecture](docs/architecture.md), [plan](docs/plan.md),
+## Implementation overview
+
+DRF serializers validate the two strings; the Geoapify adapter resolves endpoints
+and normalizes a driving route before any station read transaction. SQLite models
+preserve OPIS identity, source-price ambiguity, location fingerprints and enrichment
+provenance. Management commands validate input before short atomic writes and
+increment the shared dataset revision only for actual changes.
+
+The station repository reads revision and projected, indexed bounding-box candidates
+in one short consistent transaction (two SELECTs). Pure Python segment matching
+computes corridor offsets and cumulative route miles outside that transaction.
+The Decimal fuel optimizer buys partial quantities based on the next cheaper reachable
+station, independently of Django models or provider HTTP. Revision-keyed plan caches
+avoid mixing station snapshots; route caches are independent of price changes.
+
+See [delivery readiness and assignment compliance](docs/submission-readiness.md),
+[architecture](docs/architecture.md), [plan](docs/plan.md),
 [implementation evidence](docs/implementation-progress.md),
 [validation review](docs/route-validation-review.md),
 [proposed real demonstration](docs/real-data-demonstration-plan.md),

@@ -1,0 +1,30 @@
+{
+  "mode": "live_running_django_application",
+  "max_attempts": 3,
+  "retries": 0,
+  "estimated_credit_budget": 8,
+  "attempts": [
+    {
+      "number": 1,
+      "endpoint": "/v1/geocode/search",
+      "started_at": "2026-10-09T18:29:56.342969+00:00",
+      "status_code": 200,
+      "latency_seconds": 1.3702
+    },
+    {
+      "number": 2,
+      "endpoint": "/v1/geocode/search",
+      "started_at": "2026-10-09T18:29:57.719271+00:00",
+      "status_code": 200,
+      "latency_seconds": 0.565
+    },
+    {
+      "number": 3,
+      "endpoint": "/v1/routing",
+      "started_at": "2026-10-09T18:29:58.288839+00:00",
+      "status_code": 200,
+      "latency_seconds": 2.4316
+    }
+  ],
+  "started_at": "2026-10-09T18:13:29.011068+00:00"
+}
