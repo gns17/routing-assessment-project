@@ -50,8 +50,15 @@
         const reviewed = item.location_quality === 'verified_station_site';
         const point = item.assumed_point;
         const popup = document.createElement('span');
+        popup.style.whiteSpace = 'pre-line';
         const names = item.candidate_stations.map(s => `${s.name} (OPIS ${s.opis_id}, snapshot $${s.price_per_gallon}/gallon)`).join('; ');
-        popup.textContent = `${area ? 'APPROXIMATE FUELING AREA — not a station' : reviewed ? 'Reviewed station site — access unverified' : 'ESTIMATED PHYSICAL SITE — unverified'}: ${item.label}. Conditional ${item.modeled_gallons_purchased} gallons, $${item.conditional_purchase_cost}. Modeled price from OPIS ${item.modeled_price_candidate_opis_id}. Candidates: ${names}. Source: ${JSON.stringify(item.provenance)}. No navigation destination; station positioning, availability and access require confirmation.`;
+        const source = item.provenance.source || item.provenance;
+        const census = area && typeof source.url === 'string' && source.url.startsWith('https://www2.census.gov/');
+        const sourceLabel = census ? `US Census Gazetteer (${data.location_data_provenance.edition})` : area ? 'Locality reference data' : reviewed ? 'Reviewed station evidence' : 'Estimated station evidence';
+        const locality = area ? item.label : `${item.candidate_stations[0].city}, ${item.candidate_stations[0].state}`;
+        const method = census ? 'Census representative internal point' : source.coordinate_method || 'See source evidence in API response';
+        const important = area ? 'This is not a station location or verified entrance.' : reviewed ? 'Station site reviewed; entrance and road access are not verified.' : 'Physical station estimate; identity, position and entrance are not independently verified.';
+        popup.textContent = `${area ? 'APPROXIMATE FUELING AREA — not a station' : reviewed ? 'Reviewed station site — access unverified' : 'ESTIMATED PHYSICAL SITE — unverified'}: ${item.label}\nConditional ${item.modeled_gallons_purchased} gallons, $${item.conditional_purchase_cost}. Modeled price from OPIS ${item.modeled_price_candidate_opis_id}.\nCandidates: ${names}\nSource: ${sourceLabel}\nLocality: ${locality}\nCoordinate method: ${method}\nImportant: ${important}\nUncertainty: route-position bound ${item.uncertainty.route_mile_bound ?? 'unknown'} miles; access-detour bound ${item.uncertainty.access_detour_bound_miles ?? 'unknown'} miles.\nNo navigation destination; positioning, availability and access require confirmation. Full provenance and uncertainty remain in the API response.`;
         // Screen-sized hollow indicator: NOT an invented geographic uncertainty radius.
         L.circleMarker([point.latitude, point.longitude], {
           radius: area ? 14 : 8, color: area ? '#753bbd' : reviewed ? '#168344' : '#d87800',

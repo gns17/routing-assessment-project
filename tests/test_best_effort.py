@@ -161,6 +161,10 @@ def test_strict_failure_opt_in_returns_conditional_areas_and_safe_map(
     assert "APPROXIMATE FUELING AREA" in page and "UNVERIFIED" in page
     assert "textContent" in page and "unverified_driving_feasibility" in page
     assert "<script>unsafe</script>" not in page and "OpenStreetMap" in page
+    assert "US Census Gazetteer" in page and "Coordinate method:" in page
+    assert "This is not a station location or verified entrance." in page
+    assert "JSON.stringify(item.provenance)" not in page
+    assert "Full provenance and uncertainty remain in the API response." in page
 
 
 @pytest.mark.parametrize("value", ["true", 1, None, [], {}])
