@@ -97,4 +97,8 @@ def map_view(request, token):
     payload = caches["maps"].get(f"map:{token}")
     if payload is None:
         raise Http404("Map expired or unavailable")
-    return render(request, "routing/map.html", {"payload": payload})
+    response = render(request, "routing/map.html", {"payload": payload})
+    # OSM requires a browser Referer; Django's same-origin default suppresses it.
+    # Share only the origin across sites, never the snapshot token in the URL.
+    response["Referrer-Policy"] = "strict-origin-when-cross-origin"
+    return response

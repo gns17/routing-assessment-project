@@ -8,6 +8,7 @@ from pathlib import Path
 
 import pytest
 from django.core.cache import caches
+from django.test import override_settings
 from django.urls import reverse
 from rest_framework.test import APIClient
 
@@ -25,6 +26,9 @@ class AttributionLinks(HTMLParser):
 @pytest.mark.parametrize(
     "fixture", ["final-live-api-response.json", "best-effort-live-api-response.json"]
 )
+@override_settings(
+    SECURE_REFERRER_POLICY="same-origin", GEOAPIFY_API_KEY="server-only-secret"
+)
 def test_both_map_modes_credit_geoapify_and_osm_without_altering_payload(fixture):
     root = Path(__file__).resolve().parents[1]
     payload = json.loads((root / "data" / fixture).read_text())
@@ -33,7 +37,14 @@ def test_both_map_modes_credit_geoapify_and_osm_without_altering_payload(fixture
     caches["maps"].set(f"map:{token}", payload, 60)
     response = APIClient().get(reverse("route-map", args=[token]))
     assert response.status_code == 200
+    # Exercise SecurityMiddleware too: the view must override Django's default.
+    assert response["Referrer-Policy"] == "strict-origin-when-cross-origin"
     page = response.content.decode()
+    assert "server-only-secret" not in page
+    assert "L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png'" in page
+    assert "referrerPolicy" not in page
+    assert 'name="referrer"' not in page
+    assert "apiKey=" not in page
     # Credits are on the shared map attribution control, not a conditional popup.
     attribution = re.search(r"attribution: '([^']+)'", page).group(1)
     assert "Powered by Geoapify" in attribution and "OpenStreetMap" in attribution

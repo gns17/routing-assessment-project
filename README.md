@@ -111,6 +111,29 @@ No locality indicator is a navigation destination. Maps expire after one hour or
 eviction. Saved localhost URLs are historical evidence, not hosted endpoints.
 Leaflet assets and attributed OSM tiles need browser access, separate from routing calls.
 
+The background uses `https://tile.openstreetmap.org/{z}/{x}/{y}.png` with visible
+OpenStreetMap credit (and Geoapify credit for route data). Map responses set
+`Referrer-Policy: strict-origin-when-cross-origin`: Django's default `same-origin`
+suppresses the cross-origin tile `Referer`, violating the
+[OSM tile usage policy](https://operations.osmfoundation.org/policies/tiles/)
+and causing policy-block tiles. Only the origin is shared; snapshot tokens are not.
+Chrome's normal HTTP cache honors tile cache headers; no proxy, prefetch, cache
+bypass, domain rotation or custom identification headers are used. OSM has no
+availability guarantee. This fix adds no credentials or Geoapify tile-credit usage.
+
+To validate in Chrome, restart Django and open an unexpired strict map and a
+best-effort map. In DevTools Network, leave **Disable cache unchecked** and use a
+normal navigation, not a hard reload. Check the document's response policy above;
+tile requests must send `Referer: http://127.0.0.1:8000/` (or the actual app origin),
+return 200/cache hits, and have no default `Cache-Control: no-cache` or `Pragma`.
+Confirm backgrounds, route lines, strict stop markers/popups, best-effort hollow
+purple locality indicators/warnings, and bottom-right OSM/Geoapify attribution.
+An approved bounded Chrome check on October 10 used both recorded responses:
+20 strict and 15 best-effort tiles returned 200 with origin-only referrers and no
+cache bypass; no routing/geocoding requests were made. If a compliant request
+still returns 403, stop instead of retrying or changing domains; provider/network
+blocking then requires resolution or a separately approved tile-provider switch.
+
 ## Tests and Postman
 
 ```sh
