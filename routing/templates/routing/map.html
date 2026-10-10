@@ -10,12 +10,30 @@
 <body>
   <p>Fixed snapshot. Incomplete station coverage. Road access and detours are unverified.</p>
   <p id="summary"></p>
+  <p id="quality-legend" hidden></p>
+  <ul id="warnings" hidden></ul>
   <div id="map" aria-label="Route and recommended fuel stops"></div>
   {{ payload|json_script:"route-data" }}
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     const data = JSON.parse(document.getElementById('route-data').textContent);
-    document.getElementById('summary').textContent = `${data.distance_miles} miles; $${data.total_fuel_cost} purchased fuel; ${data.gallons_consumed} gallons consumed. Initial tank cost unknown and excluded. Dataset revision ${data.dataset_revision}.`;
+    const estimated = data.planning_mode === 'best_effort';
+    document.getElementById('summary').textContent = estimated
+      ? `${data.distance_miles} route miles; conditional scenario $${data.estimated_fuel_expenditure}. Driving fuel feasibility UNVERIFIED. Not navigation instructions. Initial tank cost excluded.`
+      : `${data.distance_miles} miles; $${data.total_fuel_cost} purchased fuel; ${data.gallons_consumed} gallons consumed. Initial tank cost unknown and excluded. Dataset revision ${data.dataset_revision}.`;
+    document.getElementById('quality-legend').textContent = estimated
+      ? 'Green: reviewed site. Orange: estimated physical site. Hollow purple: locality reference area, NOT a station. All scenario quantities are conditional.'
+      : '';
+    if (estimated) {
+      document.getElementById('quality-legend').hidden = false;
+      document.getElementById('warnings').hidden = false;
+      document.getElementById('map').setAttribute('aria-label', 'Route and conditional fueling areas; not navigation instructions');
+      for (const [index, message] of data.warnings.entries()) {
+        const item = document.createElement('li');
+        item.textContent = `${data.warning_codes[index]}: ${message}`;
+        document.getElementById('warnings').appendChild(item);
+      }
+    }
     const map = L.map('map');
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -25,6 +43,21 @@
     const lines = data.route.geometry.type === 'LineString' ? [data.route.geometry.coordinates] : data.route.geometry.coordinates;
     for (const [point, label] of [[lines[0][0], 'Start'], [lines.at(-1).at(-1), 'Finish']]) {
       L.circleMarker([point[1], point[0]]).addTo(map).bindPopup(label);
+    }
+    if (estimated) {
+      for (const item of data.conditional_scenario.purchases) {
+        const area = item.location_quality === 'locality_approximation';
+        const reviewed = item.location_quality === 'verified_station_site';
+        const point = item.assumed_point;
+        const popup = document.createElement('span');
+        const names = item.candidate_stations.map(s => `${s.name} (OPIS ${s.opis_id}, snapshot $${s.price_per_gallon}/gallon)`).join('; ');
+        popup.textContent = `${area ? 'APPROXIMATE FUELING AREA — not a station' : reviewed ? 'Reviewed station site — access unverified' : 'ESTIMATED PHYSICAL SITE — unverified'}: ${item.label}. Conditional ${item.modeled_gallons_purchased} gallons, $${item.conditional_purchase_cost}. Modeled price from OPIS ${item.modeled_price_candidate_opis_id}. Candidates: ${names}. Source: ${JSON.stringify(item.provenance)}. No navigation destination; station positioning, availability and access require confirmation.`;
+        // Screen-sized hollow indicator: NOT an invented geographic uncertainty radius.
+        L.circleMarker([point.latitude, point.longitude], {
+          radius: area ? 14 : 8, color: area ? '#753bbd' : reviewed ? '#168344' : '#d87800',
+          fillOpacity: area ? 0 : 0.5, dashArray: area ? '4 4' : null
+        }).addTo(map).bindPopup(popup);
+      }
     }
     for (const [index, stop] of data.fuel_stops.entries()) {
       const label = document.createElement('span');

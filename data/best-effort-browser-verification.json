@@ -1,0 +1,92 @@
+{
+  "validation": "Actual Chrome + real Leaflet 1.9.4, Django-rendered synthetic scenario, no Geoapify calls",
+  "checks": {
+    "real_leaflet": true,
+    "route_rendered": true,
+    "no_exact_station_pins": true,
+    "two_areas": true,
+    "two_endpoints": true,
+    "conditional_cost": true,
+    "unverified_label": true,
+    "popups": true,
+    "attribution": true,
+    "tiles": true,
+    "tile_cap": true,
+    "no_console_errors": true,
+    "no_network_errors": true
+  },
+  "map": {
+    "ready": true,
+    "leaflet": "1.9.4",
+    "paths": 5,
+    "precise_markers": 0,
+    "circles": [
+      {
+        "color": "#3388ff",
+        "radius": 10,
+        "dash": null,
+        "popup": "Start"
+      },
+      {
+        "color": "#3388ff",
+        "radius": 10,
+        "dash": null,
+        "popup": "Finish"
+      },
+      {
+        "color": "#753bbd",
+        "radius": 14,
+        "dash": "4 4",
+        "popup": "APPROXIMATE FUELING AREA \u2014 not a station: Adel, GA. Conditional 15.519168 gallons, $46.08. Modeled price from OPIS 70429. Candidates: BP (OPIS 70429, snapshot $2.96900000/gallon); ADEL TRUCK PLAZA (OPIS 66516, snapshot $2.99900000/gallon); CIRCLE K #2707043 (OPIS 72666, snapshot $2.99900000/gallon). Source: {\"url\":\"https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2025_Gazetteer/2025_Gaz_place_national.zip\",\"geoid\":\"1300576\",\"name\":\"Adel city\",\"coordinate_method\":\"Census representative internal point; NOT station site or entrance\"}. No navigation destination; station positioning, availability and access require confirmation."
+      },
+      {
+        "color": "#753bbd",
+        "radius": 14,
+        "dash": "4 4",
+        "popup": "APPROXIMATE FUELING AREA \u2014 not a station: Pelzer, SC. Conditional 14.480832 gallons, $41.98. Modeled price from OPIS 70458. Candidates: STOP-A MINIT (OPIS 70458, snapshot $2.89900000/gallon); 7-ELEVEN #36835 (OPIS 67949, snapshot $3.18233333/gallon). Source: {\"url\":\"https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2025_Gazetteer/2025_Gaz_place_national.zip\",\"geoid\":\"4555465\",\"name\":\"Pelzer town\",\"coordinate_method\":\"Census representative internal point; NOT station site or entrance\"}. No navigation destination; station positioning, availability and access require confirmation."
+      }
+    ],
+    "loaded_tiles": 20,
+    "pending_tiles": 0,
+    "summary": "800.000000 route miles; conditional scenario $88.06. Driving fuel feasibility UNVERIFIED. Not navigation instructions. Initial tank cost excluded.",
+    "attribution": " Leaflet | \u00a9 OpenStreetMap contributors",
+    "warning_codes": [
+      "conditional_scenario",
+      "unverified_driving_feasibility",
+      "unknown_station_position",
+      "unverified_access_detours",
+      "route_access_and_chainage_approximation",
+      "historical_snapshot_prices"
+    ],
+    "mode": "best_effort"
+  },
+  "tiles_requested": 20,
+  "encoded_network_bytes": 526317,
+  "console_errors": [],
+  "network_failures": [],
+  "http_statuses": [
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200
+  ]
+}

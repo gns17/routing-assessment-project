@@ -1,0 +1,451 @@
+{
+  "verification": "Offline DRF/isolated SQLite. No live provider calls. Outside-corridor geometry and 800-mile distance are synthetic, not actual driving-route evidence.",
+  "outside_corridor_example": {
+    "label": "SYNTHETIC 800-mile road geometry via real Census localities: Ocala FL to Charlotte NC. Not a verified driving route or live integration.",
+    "request": {
+      "start": "Ocala, FL",
+      "finish": "Charlotte, NC",
+      "allow_estimates": true
+    },
+    "strict_status": 422,
+    "best_effort_status": 200,
+    "response": {
+      "planning_mode": "best_effort",
+      "status": "estimated",
+      "fuel_feasibility": "unverified",
+      "route": {
+        "type": "Feature",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -82.151025,
+              29.17751
+            ],
+            [
+              -83.520499,
+              31.462099
+            ],
+            [
+              -83.934443,
+              33.039361
+            ],
+            [
+              -83.829106,
+              34.2901
+            ],
+            [
+              -82.362997,
+              34.836902
+            ],
+            [
+              -80.83099,
+              35.209045
+            ]
+          ]
+        },
+        "properties": {}
+      },
+      "distance_miles": "800.000000",
+      "duration_seconds": 50000,
+      "fuel_stops": [],
+      "total_fuel_cost": null,
+      "gallons_purchased": null,
+      "estimated_fuel_expenditure": "88.06",
+      "gallons_consumed": "80.000000",
+      "initial_tank_cost": null,
+      "conditional_scenario": {
+        "mathematically_feasible_under_assumed_positions": true,
+        "assumptions": {
+          "initial_tank_gallons": 50,
+          "tank_capacity_gallons": 50,
+          "mpg": 10,
+          "maximum_range_miles": 500,
+          "ending_reserve_gallons": 0,
+          "stop_penalty": 0,
+          "locality_price_selection": "lowest associated CSV snapshot listing; hypothetical availability"
+        },
+        "gallons_purchased": "30.000000",
+        "ending_gallons": "0.000000",
+        "purchases": [
+          {
+            "location_id": "locality:GA:adel",
+            "location_quality": "locality_approximation",
+            "label": "Adel, GA",
+            "assumed_point": {
+              "latitude": 31.1248,
+              "longitude": -83.425485,
+              "represents": "locality reference point, NOT station location"
+            },
+            "candidate_stations": [
+              {
+                "opis_id": 70429,
+                "name": "BP",
+                "address": "SR-76",
+                "city": "Adel",
+                "state": "GA",
+                "price_per_gallon": "2.96900000"
+              },
+              {
+                "opis_id": 66516,
+                "name": "ADEL TRUCK PLAZA",
+                "address": "I-75, EXIT 39",
+                "city": "Adel",
+                "state": "GA",
+                "price_per_gallon": "2.99900000"
+              },
+              {
+                "opis_id": 72666,
+                "name": "CIRCLE K #2707043",
+                "address": "I-75/SR-401, EXIT 39 & SR-37",
+                "city": "Adel",
+                "state": "GA",
+                "price_per_gallon": "2.99900000"
+              }
+            ],
+            "modeled_price_candidate_opis_id": 70429,
+            "modeled_price_per_gallon": "2.96900000",
+            "provenance": {
+              "url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2025_Gazetteer/2025_Gaz_place_national.zip",
+              "geoid": "1300576",
+              "name": "Adel city",
+              "coordinate_method": "Census representative internal point; NOT station site or entrance"
+            },
+            "uncertainty": {
+              "route_mile_bound": null,
+              "access_detour_bound_miles": null,
+              "station_position_known": false,
+              "position_is_physical_estimate": false,
+              "entrance_verified": false
+            },
+            "navigation_destination": false,
+            "assumed_route_miles": "221.405178",
+            "reference_point_offset_miles": 5.63920140530595,
+            "modeled_gallons_purchased": "15.519168",
+            "conditional_purchase_cost": "46.08",
+            "modeled_arrival_gallons": "27.859482",
+            "modeled_departure_gallons": "43.378650"
+          },
+          {
+            "location_id": "locality:SC:pelzer",
+            "location_quality": "locality_approximation",
+            "label": "Pelzer, SC",
+            "assumed_point": {
+              "latitude": 34.642859,
+              "longitude": -82.460473,
+              "represents": "locality reference point, NOT station location"
+            },
+            "candidate_stations": [
+              {
+                "opis_id": 70458,
+                "name": "STOP-A MINIT",
+                "address": "US-25 & SR-418",
+                "city": "Pelzer",
+                "state": "SC",
+                "price_per_gallon": "2.89900000"
+              },
+              {
+                "opis_id": 67949,
+                "name": "7-ELEVEN #36835",
+                "address": "I-85, EXIT 32",
+                "city": "Pelzer",
+                "state": "SC",
+                "price_per_gallon": "3.18233333"
+              }
+            ],
+            "modeled_price_candidate_opis_id": 70458,
+            "modeled_price_per_gallon": "2.89900000",
+            "provenance": {
+              "url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2025_Gazetteer/2025_Gaz_place_national.zip",
+              "geoid": "4555465",
+              "name": "Pelzer town",
+              "coordinate_method": "Census representative internal point; NOT station site or entrance"
+            },
+            "uncertainty": {
+              "route_mile_bound": null,
+              "access_detour_bound_miles": null,
+              "station_position_known": false,
+              "position_is_physical_estimate": false,
+              "entrance_verified": false
+            },
+            "navigation_destination": false,
+            "assumed_route_miles": "655.191675",
+            "reference_point_offset_miles": 9.921843155785623,
+            "modeled_gallons_purchased": "14.480832",
+            "conditional_purchase_cost": "41.98",
+            "modeled_arrival_gallons": "0.000000",
+            "modeled_departure_gallons": "14.480832"
+          }
+        ],
+        "uncertainty_check": {
+          "status": "unknown",
+          "reason": "Unbounded station position or driving access; no safety margin invented."
+        }
+      },
+      "approximate_fueling_areas": [
+        {
+          "location_id": "locality:GA:adel",
+          "location_quality": "locality_approximation",
+          "label": "Adel, GA",
+          "assumed_point": {
+            "latitude": 31.1248,
+            "longitude": -83.425485,
+            "represents": "locality reference point, NOT station location"
+          },
+          "candidate_stations": [
+            {
+              "opis_id": 70429,
+              "name": "BP",
+              "address": "SR-76",
+              "city": "Adel",
+              "state": "GA",
+              "price_per_gallon": "2.96900000"
+            },
+            {
+              "opis_id": 66516,
+              "name": "ADEL TRUCK PLAZA",
+              "address": "I-75, EXIT 39",
+              "city": "Adel",
+              "state": "GA",
+              "price_per_gallon": "2.99900000"
+            },
+            {
+              "opis_id": 72666,
+              "name": "CIRCLE K #2707043",
+              "address": "I-75/SR-401, EXIT 39 & SR-37",
+              "city": "Adel",
+              "state": "GA",
+              "price_per_gallon": "2.99900000"
+            }
+          ],
+          "modeled_price_candidate_opis_id": 70429,
+          "modeled_price_per_gallon": "2.96900000",
+          "provenance": {
+            "url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2025_Gazetteer/2025_Gaz_place_national.zip",
+            "geoid": "1300576",
+            "name": "Adel city",
+            "coordinate_method": "Census representative internal point; NOT station site or entrance"
+          },
+          "uncertainty": {
+            "route_mile_bound": null,
+            "access_detour_bound_miles": null,
+            "station_position_known": false,
+            "position_is_physical_estimate": false,
+            "entrance_verified": false
+          },
+          "navigation_destination": false,
+          "assumed_route_miles": "221.405178",
+          "reference_point_offset_miles": 5.63920140530595,
+          "modeled_gallons_purchased": "15.519168",
+          "conditional_purchase_cost": "46.08",
+          "modeled_arrival_gallons": "27.859482",
+          "modeled_departure_gallons": "43.378650"
+        },
+        {
+          "location_id": "locality:SC:pelzer",
+          "location_quality": "locality_approximation",
+          "label": "Pelzer, SC",
+          "assumed_point": {
+            "latitude": 34.642859,
+            "longitude": -82.460473,
+            "represents": "locality reference point, NOT station location"
+          },
+          "candidate_stations": [
+            {
+              "opis_id": 70458,
+              "name": "STOP-A MINIT",
+              "address": "US-25 & SR-418",
+              "city": "Pelzer",
+              "state": "SC",
+              "price_per_gallon": "2.89900000"
+            },
+            {
+              "opis_id": 67949,
+              "name": "7-ELEVEN #36835",
+              "address": "I-85, EXIT 32",
+              "city": "Pelzer",
+              "state": "SC",
+              "price_per_gallon": "3.18233333"
+            }
+          ],
+          "modeled_price_candidate_opis_id": 70458,
+          "modeled_price_per_gallon": "2.89900000",
+          "provenance": {
+            "url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2025_Gazetteer/2025_Gaz_place_national.zip",
+            "geoid": "4555465",
+            "name": "Pelzer town",
+            "coordinate_method": "Census representative internal point; NOT station site or entrance"
+          },
+          "uncertainty": {
+            "route_mile_bound": null,
+            "access_detour_bound_miles": null,
+            "station_position_known": false,
+            "position_is_physical_estimate": false,
+            "entrance_verified": false
+          },
+          "navigation_destination": false,
+          "assumed_route_miles": "655.191675",
+          "reference_point_offset_miles": 9.921843155785623,
+          "modeled_gallons_purchased": "14.480832",
+          "conditional_purchase_cost": "41.98",
+          "modeled_arrival_gallons": "0.000000",
+          "modeled_departure_gallons": "14.480832"
+        }
+      ],
+      "dataset_revision": 2,
+      "location_data_version": "d7f2e17b9de3574baaa7208f720fde9abd7c4f6eafba5771acc888e9f19f6e18",
+      "location_data_provenance": {
+        "provider": "US Census Bureau",
+        "edition": 2025,
+        "license": "US government-produced data, public domain in the United States; retain attribution",
+        "license_url": "https://www2.census.gov/foia/ds_policies/ds027.pdf",
+        "license_scope": "Census locality records only; optional estimated sites retain their own source terms",
+        "source_url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2025_Gazetteer/2025_Gaz_place_national.zip",
+        "source_sha256": "49644173a453469d9bd77fb7a493b027f87567e209edaf2078aac7543ac2ee29",
+        "seed_sha256": "c704371f141ded9c54df6c32d488a0ba2ceb589f88c936c967daa5330e0cd241",
+        "normalization": "ascii lowercase punctuation/whitespace; documented Census suffix removal only"
+      },
+      "coverage": {
+        "complete_csv_coverage": false,
+        "scope": "conditional_location_hints",
+        "candidate_count_units": "OPIS records, not independently located stations",
+        "candidate_counts": {
+          "verified_station_site": 6,
+          "estimated_physical_station": 0,
+          "locality_approximation": 6138
+        },
+        "seed_stations": 6626,
+        "unique_location_hints": 3499,
+        "matched_location_hints": 44,
+        "route_candidate_counts": {
+          "verified_station_site": 0,
+          "estimated_physical_station": 0,
+          "locality_approximation": 109
+        },
+        "route_location_counts": {
+          "verified_station_site": 0,
+          "estimated_physical_station": 0,
+          "locality_approximation": 44
+        },
+        "unlocated_stations": 482,
+        "stale_estimated_identities_excluded": 0,
+        "locality_search_corridor_miles": 10.0,
+        "locality_corridor_is_not_station_access_bound": true,
+        "largest_assumed_gap_miles": "56.401122"
+      },
+      "mileage_method": "scaled_geometry",
+      "warnings": [
+        "Fuel quantities and expenditure are conditional on assumed locations and availability; not driving instructions.",
+        "The mathematical scenario does not establish reachable fuel stops or a 500-mile driving guarantee.",
+        "A locality reference point does not establish where any associated station is located.",
+        "Entrances, access detours, fuel availability and additional mileage are excluded and unverified.",
+        "Positions interpolate within provider steps, or use scaled geometry when steps are absent. US endpoints do not ensure the whole route stays in the US.",
+        "CSV snapshot prices remain attached to OPIS identities; current prices and the initial tank cost are unknown."
+      ],
+      "warning_codes": [
+        "conditional_scenario",
+        "unverified_driving_feasibility",
+        "unknown_station_position",
+        "unverified_access_detours",
+        "route_access_and_chainage_approximation",
+        "historical_snapshot_prices"
+      ],
+      "strict_coverage_failure": {
+        "coverage": {
+          "scope": "reviewed_candidates_only",
+          "complete_csv_coverage": false,
+          "eligible_candidates": 0,
+          "matched_stations": 0,
+          "route_visits": 0,
+          "largest_gap_miles": "800.000000",
+          "unbridgeable_gaps": [
+            {
+              "from_miles": "0.000000",
+              "to_miles": "800.000000",
+              "gap_miles": "800.000000"
+            }
+          ]
+        },
+        "dataset_revision": 2
+      }
+    }
+  },
+  "strict_response_summary": {
+    "distance_miles": "1221.630055",
+    "total_fuel_cost": "232.44",
+    "gallons_consumed": "122.163006",
+    "gallons_purchased": "72.163006",
+    "dataset_revision": 2,
+    "coverage": {
+      "scope": "reviewed_candidates_only",
+      "complete_csv_coverage": false,
+      "eligible_candidates": 6,
+      "matched_stations": 6,
+      "route_visits": 6,
+      "largest_gap_miles": "350.879358",
+      "unbridgeable_gaps": []
+    }
+  },
+  "performance": {
+    "repetitions": 5,
+    "recorded_route_segments": 12071,
+    "cold_seconds": [
+      0.2993516249989625,
+      0.3220229579965235,
+      0.30320862499502255,
+      0.2990690419974271,
+      0.2997865829966031
+    ],
+    "warm_seconds": [
+      0.09456212499935646,
+      0.08224525000696303,
+      0.080899041997327,
+      0.08170991599763511,
+      0.08107883300544927
+    ],
+    "cold_median_seconds": 0.2997865829966031,
+    "warm_median_seconds": 0.08170991599763511,
+    "synthetic_example_api_seconds": 0.039357749999908265,
+    "excludes_live_provider_latency": true,
+    "process_peak_rss_bytes": 123715584
+  },
+  "data_coverage": {
+    "station_count": 6626,
+    "candidate_counts": {
+      "verified_station_site": 6,
+      "locality_approximation": 6138,
+      "estimated_physical_station": 0
+    },
+    "unlocated": 482,
+    "unique_hints": 3499,
+    "localities": 3493,
+    "states": 47,
+    "physical_estimates": 0
+  },
+  "provider_external_attempts": 0,
+  "recorded_http_replies_for_benchmarks": 18,
+  "quality_checks": {
+    "pytest_passed": 223,
+    "ruff": "passed",
+    "django_checks": "passed",
+    "migration_drift": "none",
+    "git_diff_check": "passed"
+  },
+  "browser_verification": "data/best-effort-browser-verification.json",
+  "preservation": {
+    "development_database_unchanged": true,
+    "accepted_stations": 6,
+    "pending_stations": 6620,
+    "dataset_revision": 2,
+    "optimizer_unchanged": true,
+    "submission_drafts_unchanged": true
+  },
+  "final_review": {
+    "server_location_data_failure_http_status": 500,
+    "missing_and_invalid_data_api_regressions": "passed",
+    "synthetic_example_documented": true,
+    "off_route_locality_points_documented": true,
+    "zero_reserve_fragility_documented": true,
+    "additional_live_geoapify_attempts": 0
+  }
+}

@@ -149,3 +149,8 @@ MAILERS = {
         "BACKEND": "django.core.mail.backends.console.EmailBackend",
     },
 }
+
+# Static offline location-hint snapshot; no request-time geocoding or automatic reload.
+BEST_EFFORT_LOCATION_FILE = BASE_DIR / "data" / "best-effort-locations.json"
+# Search distance from area reference points, never a physical-station access bound.
+BEST_EFFORT_AREA_CORRIDOR_MILES = 10.0
