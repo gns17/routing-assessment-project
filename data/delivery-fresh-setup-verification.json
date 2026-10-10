@@ -1,0 +1,43 @@
+{
+  "verification": "Isolated committed checkout, actual Django WSGI/DRF HTTP and fresh SQLite; saved real provider replies only, not new live verification",
+  "code_commit": "b6e88f4",
+  "locked_dependencies_installed_offline": true,
+  "development_database_access": false,
+  "local_env_copied": false,
+  "research_files_copied": false,
+  "locality_snapshot_from_commit": true,
+  "station_count": 6626,
+  "accepted_stations": 6,
+  "pending_stations": 6620,
+  "dataset_revision": 2,
+  "recorded_provider_replies": 6,
+  "external_geoapify_attempts": 0,
+  "requests": [
+    {
+      "case": "strict_reviewed",
+      "http_status": 200,
+      "seconds": 0.08624191700073425,
+      "distance_miles": "1221.630055",
+      "strict_cost": "232.44",
+      "conditional_expenditure": null,
+      "map_http_status": 200
+    },
+    {
+      "case": "strict_unsupported",
+      "http_status": 422,
+      "seconds": 0.03019883399247192,
+      "distance_miles": null,
+      "strict_cost": null,
+      "conditional_expenditure": null
+    },
+    {
+      "case": "conditional_scenario",
+      "http_status": 200,
+      "seconds": 0.17502120799326804,
+      "distance_miles": "663.900943",
+      "strict_cost": null,
+      "conditional_expenditure": "48.66",
+      "map_http_status": 200
+    }
+  ]
+}

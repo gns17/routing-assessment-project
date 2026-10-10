@@ -1,0 +1,226 @@
+{
+  "info": {
+    "name": "Spotter fuel routing — strict and conditional modes",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Three reviewer examples. No credentials. base_url defaults to localhost. Precise snapshot assertions are opt-in because live provider geometry can change. Never interpret conditional scenarios as actionable fuel stops."
+  },
+  "auth": {
+    "type": "noauth"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000",
+      "type": "string"
+    },
+    {
+      "key": "assert_recorded_snapshot",
+      "value": "false",
+      "type": "string",
+      "description": "Set true for the saved-response regression/rehearsal; leave false for fresh live geometry."
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Albuquerque → Nashville — strict success",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"start\": \"Albuquerque, NM\",\n  \"finish\": \"Nashville, TN\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{base_url}}/api/route/",
+        "description": "Requires the documented CSV and six reviewed-site imports. Sending a cold request may consume Geoapify credits; no credentials belong in Postman."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const data = pm.response.json();",
+              "const snapshot = pm.collectionVariables.get(\"assert_recorded_snapshot\") === \"true\";",
+              "",
+              "pm.test(\"Strict plan is an HTTP 200 reviewed-subset result\", () => {",
+              "  pm.expect(pm.response.code).to.eql(200);",
+              "  pm.expect(data.planning_mode === undefined).to.eql(true);",
+              "  pm.expect(data.coverage.scope).to.eql(\"reviewed_candidates_only\");",
+              "  pm.expect(data.coverage.complete_csv_coverage).to.eql(false);",
+              "  pm.expect(data.route.type).to.eql(\"Feature\");",
+              "  pm.expect(typeof data.map_url === \"string\").to.eql(true);",
+              "  pm.expect(data.initial_tank_cost).to.eql(null);",
+              "});",
+              "pm.test(\"Purchase identities, prices and inventory are valid\", () => {",
+              "  let position = 0, inventory = 50, gallons = 0, cost = 0;",
+              "  for (const stop of data.fuel_stops) {",
+              "    pm.expect(stop.opis_id > 0 && Number(stop.price_per_gallon) > 0).to.eql(true);",
+              "    const leg = Number(stop.route_miles) - position;",
+              "    pm.expect(leg >= 0 && leg <= 500.00001).to.eql(true);",
+              "    inventory -= leg / 10;",
+              "    pm.expect(Math.abs(inventory - Number(stop.arrival_gallons)) < 0.00001).to.eql(true);",
+              "    inventory += Number(stop.gallons_purchased);",
+              "    pm.expect(inventory >= -0.00001 && inventory <= 50.00001).to.eql(true);",
+              "    gallons += Number(stop.gallons_purchased);",
+              "    cost += Number(stop.purchase_cost);",
+              "    position = Number(stop.route_miles);",
+              "  }",
+              "  pm.expect(Number(data.distance_miles) - position <= 500.00001).to.eql(true);",
+              "  pm.expect(Math.abs(50 + gallons - Number(data.gallons_consumed) - Number(data.ending_gallons)) < 0.00001).to.eql(true);",
+              "  pm.expect(Math.abs(cost - Number(data.total_fuel_cost)) <= 0.01 * data.fuel_stops.length + 0.001).to.eql(true);",
+              "});",
+              "if (snapshot) pm.test(\"Matches recorded Albuquerque–Nashville snapshot\", () => {",
+              "  pm.expect(data.total_fuel_cost).to.eql(\"232.44\");",
+              "  pm.expect(data.fuel_stops.map(s => s.opis_id)).to.eql([4446,7733,52468,6755]);",
+              "  pm.expect(data.distance_miles).to.eql(\"1221.630055\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Atlanta → Miami — strict coverage failure",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"start\": \"Atlanta, GA\",\n  \"finish\": \"Miami, FL\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{base_url}}/api/route/",
+        "description": "Requires the documented CSV and six reviewed-site imports. Sending a cold request may consume Geoapify credits; no credentials belong in Postman."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const data = pm.response.json();",
+              "const snapshot = pm.collectionVariables.get(\"assert_recorded_snapshot\") === \"true\";",
+              "",
+              "pm.test(\"Strict Atlanta–Miami reports truthful insufficient coverage\", () => {",
+              "  pm.expect(pm.response.code).to.eql(422);",
+              "  pm.expect(data.error.code).to.eql(\"insufficient_station_coverage\");",
+              "  pm.expect(data.error.details.coverage.complete_csv_coverage).to.eql(false);",
+              "  pm.expect(data.error.details.coverage.unbridgeable_gaps.length > 0).to.eql(true);",
+              "  pm.expect(data.map_url === undefined).to.eql(true);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Atlanta → Miami — best-effort scenario",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"start\": \"Atlanta, GA\",\n  \"finish\": \"Miami, FL\",\n  \"allow_estimates\": true\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{base_url}}/api/route/",
+        "description": "Requires the documented CSV and six reviewed-site imports. Sending a cold request may consume Geoapify credits; no credentials belong in Postman."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const data = pm.response.json();",
+              "const snapshot = pm.collectionVariables.get(\"assert_recorded_snapshot\") === \"true\";",
+              "",
+              "pm.test(\"Best effort is conditional, not actionable verified stops\", () => {",
+              "  pm.expect(pm.response.code).to.eql(200);",
+              "  pm.expect(data.planning_mode).to.eql(\"best_effort\");",
+              "  pm.expect(data.status).to.eql(\"estimated\");",
+              "  pm.expect(data.fuel_feasibility).to.eql(\"unverified\");",
+              "  pm.expect(data.fuel_stops).to.eql([]);",
+              "  pm.expect(data.total_fuel_cost).to.eql(null);",
+              "  pm.expect(data.gallons_purchased).to.eql(null);",
+              "  pm.expect(data.initial_tank_cost).to.eql(null);",
+              "  pm.expect(data.coverage.complete_csv_coverage).to.eql(false);",
+              "  pm.expect(typeof data.map_url === \"string\").to.eql(true);",
+              "  pm.expect(/^[a-f0-9]{64}$/.test(data.location_data_version)).to.eql(true);",
+              "});",
+              "pm.test(\"Warnings, source identities and uncertainty propagate\", () => {",
+              "  for (const code of [\"conditional_scenario\",\"unverified_driving_feasibility\",\"unknown_station_position\",\"unverified_access_detours\",\"route_access_and_chainage_approximation\",\"historical_snapshot_prices\"])",
+              "    pm.expect(data.warning_codes.includes(code)).to.eql(true);",
+              "  const ids = new Set();",
+              "  for (const area of data.approximate_fueling_areas) {",
+              "    pm.expect(ids.has(area.location_id)).to.eql(false); ids.add(area.location_id);",
+              "    pm.expect(area.location_quality).to.eql(\"locality_approximation\");",
+              "    pm.expect(area.navigation_destination).to.eql(false);",
+              "    pm.expect(area.uncertainty.station_position_known).to.eql(false);",
+              "    pm.expect(area.uncertainty.entrance_verified).to.eql(false);",
+              "    pm.expect(area.uncertainty.route_mile_bound).to.eql(null);",
+              "    pm.expect(area.uncertainty.access_detour_bound_miles).to.eql(null);",
+              "    pm.expect(typeof area.provenance.url === \"string\").to.eql(true);",
+              "    const candidate = area.candidate_stations.find(s => s.opis_id === area.modeled_price_candidate_opis_id);",
+              "    pm.expect(candidate !== undefined && candidate.price_per_gallon === area.modeled_price_per_gallon).to.eql(true);",
+              "    pm.expect(area.candidate_stations.every(s => s.latitude === undefined && s.longitude === undefined)).to.eql(true);",
+              "  }",
+              "});",
+              "pm.test(\"Modeled purchases conserve fuel without asserting driving feasibility\", () => {",
+              "  const scenario = data.conditional_scenario;",
+              "  let position = 0, inventory = 50, gallons = 0, cost = 0;",
+              "  for (const p of scenario.purchases) {",
+              "    const leg = Number(p.assumed_route_miles) - position;",
+              "    pm.expect(leg >= 0 && leg <= 500.00001).to.eql(true);",
+              "    inventory -= leg / 10;",
+              "    pm.expect(inventory >= -0.00001 && Math.abs(inventory - Number(p.modeled_arrival_gallons)) < 0.00001).to.eql(true);",
+              "    inventory += Number(p.modeled_gallons_purchased);",
+              "    pm.expect(inventory <= 50.00001 && Math.abs(inventory - Number(p.modeled_departure_gallons)) < 0.00001).to.eql(true);",
+              "    gallons += Number(p.modeled_gallons_purchased); cost += Number(p.conditional_purchase_cost);",
+              "    position = Number(p.assumed_route_miles);",
+              "  }",
+              "  pm.expect(Number(data.distance_miles) - position <= 500.00001).to.eql(true);",
+              "  pm.expect(Math.abs(50 + gallons - Number(data.gallons_consumed) - Number(scenario.ending_gallons)) < 0.00001).to.eql(true);",
+              "  pm.expect(Math.abs(cost - Number(data.estimated_fuel_expenditure)) <= 0.01 * scenario.purchases.length + 0.001).to.eql(true);",
+              "});",
+              "if (snapshot) pm.test(\"Matches recorded Atlanta–Miami snapshot\", () => {",
+              "  pm.expect(data.distance_miles).to.eql(\"663.900943\");",
+              "  pm.expect(data.estimated_fuel_expenditure).to.eql(\"48.66\");",
+              "  pm.expect(data.approximate_fueling_areas.map(a => a.label)).to.eql([\"Adel, GA\"]);",
+              "  pm.expect(data.approximate_fueling_areas[0].modeled_price_candidate_opis_id).to.eql(70429);",
+              "});"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

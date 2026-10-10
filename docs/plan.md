@@ -10,13 +10,13 @@ application issues were created.
 | Issue | Scope | Current status |
 | --- | --- | --- |
 | [GNS-5](https://linear.app/gns17/issue/GNS-5) A | Geoapify station feasibility | Done — negative conclusion |
-| [GNS-7](https://linear.app/gns17/issue/GNS-7) C | Endpoint geocoding/routing/cache | Done — mocked tests |
+| [GNS-7](https://linear.app/gns17/issue/GNS-7) C | Endpoint geocoding/routing/cache | Done — mocked and approved live evidence |
 | [GNS-9](https://linear.app/gns17/issue/GNS-9) E | Pure fuel optimizer | Done — optimality tests |
 | [GNS-6](https://linear.app/gns17/issue/GNS-6) B | SQLite schema/import/reviewed coordinate artifact | Done |
-| [GNS-8](https://linear.app/gns17/issue/GNS-8) D | Repository and pure route matching | In Progress — calibration/performance review remains |
-| [GNS-10](https://linear.app/gns17/issue/GNS-10) F | DRF and minimal Leaflet vertical slice | In Progress — implemented, final review pending |
-| [GNS-11](https://linear.app/gns17/issue/GNS-11) G | Performance/submission | Backlog |
-| [GNS-12](https://linear.app/gns17/issue/GNS-12) H | Bounded offline New Mexico OSM feasibility | Backlog — nonblocking, download unapproved |
+| [GNS-8](https://linear.app/gns17/issue/GNS-8) D | Repository and pure route matching | Done — explicit reviewed-subset scope |
+| [GNS-10](https://linear.app/gns17/issue/GNS-10) F | DRF and minimal Leaflet vertical slice | Done — live/browser/fresh evidence; limited coverage |
+| [GNS-11](https://linear.app/gns17/issue/GNS-11) G | Performance/submission | In Progress — technical checks complete, delivery gates pending |
+| [GNS-12](https://linear.app/gns17/issue/GNS-12) H | Bounded offline New Mexico OSM feasibility | Done — limited yield, no expansion or production imports |
 
 ## Reconciled scope and dependencies
 
@@ -51,18 +51,24 @@ never real source matches or demonstration substitutes.
   commit atomically without any HTTP; unchanged evidence can resume idempotently.
 - D: accepted/current/active eligibility; two projected SELECTs, consistent revision
   and candidates; matching outside transactions; configurable corridor, loops,
-  disconnected geometry and boundaries. Initial query plan/timings are recorded,
-  but real accuracy, representative performance and operational corridor calibration
-  remain pending. No coverage claim follows from synthetic tests.
+  disconnected geometry and boundaries. Query plan/timings, representative labeled
+  synthetic benchmarks and six-site corridor sensitivity are recorded. Default is
+  justified only for the reviewed subset; no national calibration/access claim.
 - F: route GeoJSON, genuine eligible stop identity, decimal fuel totals, revision,
   warnings and attributed map URL; mocked ORM-backed API/map integration; plan keys
-  include shared revision, route, corridor and fuel policy. Final integration review
-  remains pending; unsupported coverage returns an explicit 422 rather than fake stops.
+  include shared revision, route, corridor and fuel policy. Approved live request,
+  actual browser rendering and isolated fresh setup pass; unsupported coverage returns
+  an explicit 422 rather than fake stops. Completion is not nationwide functionality.
 - G: broaden measured workloads only where useful, record memory/payload/locking
   limitations, final tests/Ruff/docs, prepare GitHub and at-most-five-minute Loom.
   Publication/recording is not performed automatically.
 
 ## H — initially New Mexico only
+
+Historical experiment proposal below. Completed under the later approved two-hour
+cap: 107 OPIS records, 20-case audit, five verified research sites, no production
+imports. The user accepted the [feasibility findings](osm-feasibility.md) and closed
+GNS-12; no national expansion or production acceptance changes before submission.
 
 Priority Medium. Start only after core implementation is underway; max 60–90 minutes
 including setup/download/extraction/matching, target 60. Require approval before
@@ -86,12 +92,25 @@ retain unresolved records and reject unsupported long trips. Do not substitute P
 ## Implementation order
 
 Completed: A investigation → C/E independent components → B schema/import.
-Current: D/F local validation fixes/tests/benchmarks complete; real-data accuracy
-calibration and map/provider demonstration remain unverified. See
-[validation review](route-validation-review.md) and the proposed
-[bounded corridor demonstration](real-data-demonstration-plan.md). No Linear scope
-or completion status is changed by this proposal. Next: approve the demonstration
-strategy, then close remaining D/F gates and finish G delivery validation.
-H can run only within its time cap after download approval and never blocks delivery.
+Current: D/F complete with explicit scoped acceptance and live/browser/fresh evidence.
+See [final verification](final-verification.md), [submission readiness](submission-readiness.md)
+and [submission package](submission-package.md). G's required local technical checks
+are complete; the user verified latest-stable Django and explicitly made SQLite
+write-contention benchmarking optional/nonblocking absent an actual problem.
+Confirmed deadline: October 11, 2026, 16:55 GMT−3 (19:55 UTC).
+Next: finalize submission documentation, Postman availability and reviewer access; obtain recording,
+any new live-request budget and final submission approvals. No Loom or submission yet.
+H is complete and nonblocking; do not run further research without new approval.
 Additional live Geoapify requests, OSM downloads and nationwide enrichment are not
 authorized. No architecture changes or additional infrastructure are planned.
+
+## Final approved delivery scope
+
+The approved opt-in best-effort fallback and live Atlanta–Miami evidence join the
+strict reviewed-corridor demonstration. They do not change strict eligibility,
+station coordinates, ORM architecture or the pure optimizer. Locality positions
+support only explicitly conditional scenarios, never a nationwide fuel guarantee.
+Remaining work is publication, reviewer access, Postman/under-five-minute Loom and
+submission. No new enrichment, live requests, infrastructure or scope expansion.
+See [best-effort live verification](best-effort-live-verification.md) and
+[Postman collection instructions](postman/README.md). GNS-11 remains In Progress.
