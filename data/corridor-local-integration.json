@@ -1,0 +1,233 @@
+{
+  "checkpoint_commit": "d714375",
+  "mode": "offline_saved_real_provider_responses_actual_local_sqlite",
+  "external_http_attempts": 0,
+  "dry_run": {
+    "dry_run": true,
+    "opis_ids": [
+      4227,
+      4446,
+      6755,
+      7733,
+      52458,
+      52468
+    ],
+    "would_update_ids": [
+      4227,
+      4446,
+      6755,
+      7733,
+      52458,
+      52468
+    ],
+    "would_accept": 6,
+    "current_revision": 1,
+    "would_increment_revision": true
+  },
+  "identity_and_coordinate_validation": "passed",
+  "coordinate_convention": "corroborated station sites, not verified entrances",
+  "csv_sha256": "c704371f141ded9c54df6c32d488a0ba2ceb589f88c936c967daa5330e0cd241",
+  "db_path": "local development db.sqlite3",
+  "before_import_coverage_error": {
+    "error": {
+      "code": "insufficient_station_coverage",
+      "message": "Verified station coverage cannot support this route within the 500-mile range",
+      "details": {
+        "coverage": {
+          "scope": "reviewed_candidates_only",
+          "complete_csv_coverage": false,
+          "eligible_candidates": 0,
+          "matched_stations": 0,
+          "route_visits": 0,
+          "largest_gap_miles": "1221.630055",
+          "unbridgeable_gaps": [
+            {
+              "from_miles": "0.000000",
+              "to_miles": "1221.630055",
+              "gap_miles": "1221.630055"
+            }
+          ]
+        },
+        "dataset_revision": 1
+      }
+    }
+  },
+  "first_import": {
+    "result": {
+      "accepted": 6
+    },
+    "before_revision": 1,
+    "after_revision": 2,
+    "changed_ids": [
+      4227,
+      4446,
+      6755,
+      7733,
+      52458,
+      52468
+    ],
+    "prices_unchanged_for_all_records": true,
+    "unrelated_records_unchanged": true,
+    "resolved": 6,
+    "unresolved": 6620
+  },
+  "repeat_import": {
+    "accepted": 0,
+    "revision": 2,
+    "idempotent": true
+  },
+  "cache_revision_transition": {
+    "cached_before_revision": 1,
+    "after_import_revision": 2,
+    "stale_plan_not_returned": true
+  },
+  "api": {
+    "status_code": 200,
+    "elapsed_seconds": 0.052535,
+    "dataset_revision": 2,
+    "geometry_equal_saved_response": true,
+    "all_station_positions_verified": true,
+    "matched_positions": [
+      {
+        "opis_id": 4446,
+        "miles": "290.859611",
+        "offset_miles": 0.04522054592082213
+      },
+      {
+        "opis_id": 7733,
+        "miles": "292.979032",
+        "offset_miles": 0.07208264575522717
+      },
+      {
+        "opis_id": 52468,
+        "miles": "533.416479",
+        "offset_miles": 0.09057487338522252
+      },
+      {
+        "opis_id": 4227,
+        "miles": "533.516811",
+        "offset_miles": 0.16940105796309912
+      },
+      {
+        "opis_id": 6755,
+        "miles": "884.396169",
+        "offset_miles": 0.24813249096696768
+      },
+      {
+        "opis_id": 52458,
+        "miles": "884.510260",
+        "offset_miles": 0.24919674276786796
+      }
+    ],
+    "coverage": {
+      "scope": "reviewed_candidates_only",
+      "complete_csv_coverage": false,
+      "eligible_candidates": 6,
+      "matched_stations": 6,
+      "route_visits": 6,
+      "largest_gap_miles": "350.879358",
+      "unbridgeable_gaps": []
+    },
+    "cost": "232.44",
+    "gallons_consumed": "122.163006",
+    "gallons_purchased": "72.163006"
+  },
+  "map": {
+    "server_render_status": 200,
+    "embedded_geometry_and_stops_verified": true,
+    "attribution_present": true,
+    "browser_visual_status": "not verified; Leaflet assets/tiles are external and outbound access is disabled",
+    "snapshot_url": "http://testserver/maps/d0c9d357-ce67-4614-8412-52b82ea51d6d/",
+    "javascript_contract_check": {
+      "status": "passed",
+      "sdk": "local test stub, not real Leaflet",
+      "route_geometry_passed": true,
+      "purchase_markers": 4,
+      "endpoint_markers": 2,
+      "network_requests": 0
+    }
+  },
+  "strict_corridor_failure": {
+    "uses_real_saved_geometry": true,
+    "corridor_miles": 0.1,
+    "status_code": 422,
+    "error": {
+      "code": "insufficient_station_coverage",
+      "message": "Verified station coverage cannot support this route within the 500-mile range",
+      "details": {
+        "coverage": {
+          "scope": "reviewed_candidates_only",
+          "complete_csv_coverage": false,
+          "eligible_candidates": 6,
+          "matched_stations": 3,
+          "route_visits": 3,
+          "largest_gap_miles": "688.213576",
+          "unbridgeable_gaps": [
+            {
+              "from_miles": "533.416479",
+              "to_miles": "1221.630055",
+              "gap_miles": "688.213576"
+            }
+          ]
+        },
+        "dataset_revision": 2
+      }
+    }
+  },
+  "outside_coverage_failure_test": {
+    "synthetic_test_only": true,
+    "claimed_live_route": false,
+    "status_code": 422,
+    "error": {
+      "code": "insufficient_station_coverage",
+      "message": "Verified station coverage cannot support this route within the 500-mile range",
+      "details": {
+        "coverage": {
+          "scope": "reviewed_candidates_only",
+          "complete_csv_coverage": false,
+          "eligible_candidates": 0,
+          "matched_stations": 0,
+          "route_visits": 0,
+          "largest_gap_miles": "501.000000",
+          "unbridgeable_gaps": [
+            {
+              "from_miles": "0.000000",
+              "to_miles": "501.000000",
+              "gap_miles": "501.000000"
+            }
+          ]
+        },
+        "dataset_revision": 2
+      }
+    }
+  },
+  "mock_provider_replies": [
+    {
+      "endpoint": "/v1/geocode/search",
+      "source": "saved live reply",
+      "status_code": 200
+    },
+    {
+      "endpoint": "/v1/geocode/search",
+      "source": "saved live reply",
+      "status_code": 200
+    },
+    {
+      "endpoint": "/v1/routing",
+      "source": "saved live reply",
+      "status_code": 200
+    }
+  ],
+  "mock_http_attempts": 3,
+  "verification": {
+    "full_suite_tests": 148,
+    "ruff_lint": "passed",
+    "django_checks": "passed",
+    "migration_drift": "none",
+    "all_source_prices_match_csv": true,
+    "dataset_revision": 2,
+    "external_requests": 0,
+    "coordinate_import_scope": "local development SQLite only",
+    "secret_scan": "passed"
+  }
+}

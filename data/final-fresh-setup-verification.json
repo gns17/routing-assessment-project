@@ -1,0 +1,22 @@
+{
+  "source_commit": "91ef6cb",
+  "isolated_checkout": true,
+  "initial_venv_present": false,
+  "initial_database_present": false,
+  "env_file_copied": false,
+  "dependencies": "uv sync --locked --offline; new venv; 19 packages installed",
+  "python": "3.13.16",
+  "migrations": "all applied from empty database",
+  "imported_us_stations": 6626,
+  "canadian_rows_excluded": 620,
+  "reviewed_coordinates_imported": 6,
+  "unresolved": 6620,
+  "dataset_revision": 2,
+  "actual_django_server_started": true,
+  "fresh_http_status": 200,
+  "fresh_response_seconds": 0.101339,
+  "provider_mode": "recorded real replies; no additional live API calls",
+  "expected_fuel_plan_matches_live_response": true,
+  "original_local_database_accessed": false,
+  "own_geoapify_key_required_for_fresh_live_use": true
+}

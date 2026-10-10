@@ -1,0 +1,97 @@
+{
+  "validation": "Actual Chrome + real Leaflet 1.9.4 rendering the saved live Django/Geoapify Atlanta\u2013Miami response; no additional Geoapify calls; SDK served from cached real assets",
+  "checks": {
+    "real_leaflet": true,
+    "route_geometry_exact": true,
+    "route_rendered": true,
+    "no_exact_station_pins": true,
+    "area_indicators": true,
+    "endpoints": true,
+    "conditional_cost": true,
+    "unverified_label": true,
+    "popups": true,
+    "all_warnings": true,
+    "attribution": true,
+    "tiles": true,
+    "tile_cap": true,
+    "no_console_errors": true,
+    "no_network_errors": true
+  },
+  "map": {
+    "ready": true,
+    "leaflet": "1.9.4",
+    "paths": 4,
+    "precise_markers": 0,
+    "circles": [
+      {
+        "color": "#3388ff",
+        "radius": 10,
+        "dash": null,
+        "coordinates": [
+          33.754505,
+          -84.389795
+        ],
+        "popup": "Start"
+      },
+      {
+        "color": "#3388ff",
+        "radius": 10,
+        "dash": null,
+        "coordinates": [
+          25.774157,
+          -80.193598
+        ],
+        "popup": "Finish"
+      },
+      {
+        "color": "#753bbd",
+        "radius": 14,
+        "dash": "4 4",
+        "coordinates": [
+          31.1248,
+          -83.425485
+        ],
+        "popup": "APPROXIMATE FUELING AREA \u2014 not a station: Adel, GA. Conditional 16.390094 gallons, $48.66. Modeled price from OPIS 70429. Candidates: BP (OPIS 70429, snapshot $2.96900000/gallon); ADEL TRUCK PLAZA (OPIS 66516, snapshot $2.99900000/gallon); CIRCLE K #2707043 (OPIS 72666, snapshot $2.99900000/gallon). Source: {\"url\":\"https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2025_Gazetteer/2025_Gaz_place_national.zip\",\"geoid\":\"1300576\",\"name\":\"Adel city\",\"coordinate_method\":\"Census representative internal point; NOT station site or entrance\"}. No navigation destination; station positioning, availability and access require confirmation."
+      }
+    ],
+    "loaded_tiles": 15,
+    "pending_tiles": 0,
+    "summary": "663.900943 route miles; conditional scenario $48.66. Driving fuel feasibility UNVERIFIED. Not navigation instructions. Initial tank cost excluded.",
+    "attribution": " Leaflet | \u00a9 OpenStreetMap contributors",
+    "warnings": "conditional_scenario: Fuel quantities and expenditure are conditional on assumed locations and availability; not driving instructions.unverified_driving_feasibility: The mathematical scenario does not establish reachable fuel stops or a 500-mile driving guarantee.unknown_station_position: A locality reference point does not establish where any associated station is located.unverified_access_detours: Entrances, access detours, fuel availability and additional mileage are excluded and unverified.route_access_and_chainage_approximation: Positions interpolate within provider steps, or use scaled geometry when steps are absent. US endpoints do not ensure the whole route stays in the US.historical_snapshot_prices: CSV snapshot prices remain attached to OPIS identities; current prices and the initial tank cost are unknown.",
+    "warning_codes": [
+      "conditional_scenario",
+      "unverified_driving_feasibility",
+      "unknown_station_position",
+      "unverified_access_detours",
+      "route_access_and_chainage_approximation",
+      "historical_snapshot_prices"
+    ],
+    "route_equals_live_response": true,
+    "mode": "best_effort"
+  },
+  "tiles_requested": 15,
+  "encoded_network_bytes": 147613,
+  "console_errors": [],
+  "network_failures": [],
+  "http_statuses": [
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200
+  ]
+}

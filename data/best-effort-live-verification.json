@@ -1,0 +1,582 @@
+{
+  "verification": "Live driving-route geometry; exact offline replay of mathematical model at assumed Census locality points. NOT physical station or driving fuel-feasibility verification.",
+  "commit": "3fd0cf4",
+  "live_request": {
+    "start": "Atlanta, GA",
+    "finish": "Miami, FL",
+    "allow_estimates": true
+  },
+  "request_metrics": {
+    "http_status": 200,
+    "end_to_end_seconds": 6.889894583000569
+  },
+  "comparison_metrics": {
+    "strict": {
+      "http_status": 422,
+      "seconds": 0.018127500006812625
+    },
+    "warm_best_effort": {
+      "http_status": 200,
+      "seconds": 0.07093066700326744
+    },
+    "additional_geoapify_attempts": 0
+  },
+  "geometry": {
+    "type": "MultiLineString",
+    "points": 5478,
+    "sha256": "615b4dd21c676fcfa99a58c2405dc49535f7c8b5eff9df16bfb58ce0daabe5c5",
+    "mileage_method": "provider_steps",
+    "provider_meters": 1068445,
+    "exact_miles": "663.9009434900182931678994671"
+  },
+  "dataset_revision": 2,
+  "location_data_version": "d7f2e17b9de3574baaa7208f720fde9abd7c4f6eafba5771acc888e9f19f6e18",
+  "coverage": {
+    "complete_csv_coverage": false,
+    "scope": "conditional_location_hints",
+    "candidate_count_units": "OPIS records, not independently located stations",
+    "candidate_counts": {
+      "verified_station_site": 6,
+      "estimated_physical_station": 0,
+      "locality_approximation": 6138
+    },
+    "seed_stations": 6626,
+    "unique_location_hints": 3499,
+    "matched_location_hints": 43,
+    "route_candidate_counts": {
+      "verified_station_site": 0,
+      "estimated_physical_station": 0,
+      "locality_approximation": 102
+    },
+    "route_location_counts": {
+      "verified_station_site": 0,
+      "estimated_physical_station": 0,
+      "locality_approximation": 43
+    },
+    "unlocated_stations": 482,
+    "stale_estimated_identities_excluded": 0,
+    "locality_search_corridor_miles": 10.0,
+    "locality_corridor_is_not_station_access_bound": true,
+    "largest_assumed_gap_miles": "94.329115"
+  },
+  "route_areas_in_order": [
+    {
+      "label": "Atlanta, GA",
+      "location_id": "locality:GA:atlanta",
+      "assumed_route_miles": "0.000000",
+      "reference_point_offset_miles": 1.9759764404911841,
+      "candidate_opis_ids": [
+        4115,
+        52067,
+        52539,
+        63893,
+        64490,
+        64648,
+        64683,
+        72939
+      ]
+    },
+    {
+      "label": "Conley, GA",
+      "location_id": "locality:GA:conley",
+      "assumed_route_miles": "8.089035",
+      "reference_point_offset_miles": 3.6206387733122627,
+      "candidate_opis_ids": [
+        4241,
+        64819
+      ]
+    },
+    {
+      "label": "Forest Park, GA",
+      "location_id": "locality:GA:forest park",
+      "assumed_route_miles": "11.041801",
+      "reference_point_offset_miles": 2.308014406511307,
+      "candidate_opis_ids": [
+        7495
+      ]
+    },
+    {
+      "label": "Hampton, GA",
+      "location_id": "locality:GA:hampton",
+      "assumed_route_miles": "28.756867",
+      "reference_point_offset_miles": 7.4299901874381895,
+      "candidate_opis_ids": [
+        73041
+      ]
+    },
+    {
+      "label": "Mcdonough, GA",
+      "location_id": "locality:GA:mcdonough",
+      "assumed_route_miles": "30.731242",
+      "reference_point_offset_miles": 1.9191673308154633,
+      "candidate_opis_ids": [
+        63648,
+        71909
+      ]
+    },
+    {
+      "label": "Griffin, GA",
+      "location_id": "locality:GA:griffin",
+      "assumed_route_miles": "41.237476",
+      "reference_point_offset_miles": 9.843322863081783,
+      "candidate_opis_ids": [
+        72754
+      ]
+    },
+    {
+      "label": "Jackson, GA",
+      "location_id": "locality:GA:jackson",
+      "assumed_route_miles": "43.918582",
+      "reference_point_offset_miles": 7.489073616172107,
+      "candidate_opis_ids": [
+        3128,
+        7792,
+        64532,
+        66138,
+        70609
+      ]
+    },
+    {
+      "label": "Forsyth, GA",
+      "location_id": "locality:GA:forsyth",
+      "assumed_route_miles": "61.253661",
+      "reference_point_offset_miles": 0.09020769343362646,
+      "candidate_opis_ids": [
+        71627
+      ]
+    },
+    {
+      "label": "Byron, GA",
+      "location_id": "locality:GA:byron",
+      "assumed_route_miles": "93.699209",
+      "reference_point_offset_miles": 0.2263394598985493,
+      "candidate_opis_ids": [
+        63540,
+        63662,
+        67997
+      ]
+    },
+    {
+      "label": "Fort Valley, GA",
+      "location_id": "locality:GA:fort valley",
+      "assumed_route_miles": "100.397486",
+      "reference_point_offset_miles": 7.904678553035942,
+      "candidate_opis_ids": [
+        68921
+      ]
+    },
+    {
+      "label": "Perry, GA",
+      "location_id": "locality:GA:perry",
+      "assumed_route_miles": "105.725669",
+      "reference_point_offset_miles": 0.8905418585038964,
+      "candidate_opis_ids": [
+        3479,
+        60781
+      ]
+    },
+    {
+      "label": "Pinehurst, GA",
+      "location_id": "locality:GA:pinehurst",
+      "assumed_route_miles": "125.594128",
+      "reference_point_offset_miles": 0.7124616857875437,
+      "candidate_opis_ids": [
+        66388
+      ]
+    },
+    {
+      "label": "Vienna, GA",
+      "location_id": "locality:GA:vienna",
+      "assumed_route_miles": "132.788427",
+      "reference_point_offset_miles": 1.3785553871074154,
+      "candidate_opis_ids": [
+        66342
+      ]
+    },
+    {
+      "label": "Cordele, GA",
+      "location_id": "locality:GA:cordele",
+      "assumed_route_miles": "142.129042",
+      "reference_point_offset_miles": 1.1068127787411617,
+      "candidate_opis_ids": [
+        63524,
+        71072,
+        71484,
+        72918
+      ]
+    },
+    {
+      "label": "Sycamore, GA",
+      "location_id": "locality:GA:sycamore",
+      "assumed_route_miles": "163.084772",
+      "reference_point_offset_miles": 1.1083820103964184,
+      "candidate_opis_ids": [
+        72776
+      ]
+    },
+    {
+      "label": "Tifton, GA",
+      "location_id": "locality:GA:tifton",
+      "assumed_route_miles": "180.053719",
+      "reference_point_offset_miles": 0.5634014784962875,
+      "candidate_opis_ids": [
+        52239,
+        66523,
+        73080
+      ]
+    },
+    {
+      "label": "Adel, GA",
+      "location_id": "locality:GA:adel",
+      "assumed_route_miles": "204.603278",
+      "reference_point_offset_miles": 0.4772804408042539,
+      "candidate_opis_ids": [
+        66516,
+        70429,
+        72666
+      ]
+    },
+    {
+      "label": "Hahira, GA",
+      "location_id": "locality:GA:hahira",
+      "assumed_route_miles": "214.272056",
+      "reference_point_offset_miles": 0.622344894118004,
+      "candidate_opis_ids": [
+        66514
+      ]
+    },
+    {
+      "label": "Valdosta, GA",
+      "location_id": "locality:GA:valdosta",
+      "assumed_route_miles": "225.937215",
+      "reference_point_offset_miles": 2.9922184227502786,
+      "candidate_opis_ids": [
+        63925,
+        66518,
+        71931,
+        73085
+      ]
+    },
+    {
+      "label": "Lake Park, GA",
+      "location_id": "locality:GA:lake park",
+      "assumed_route_miles": "238.997836",
+      "reference_point_offset_miles": 1.8898585743353231,
+      "candidate_opis_ids": [
+        5751,
+        52563
+      ]
+    },
+    {
+      "label": "Jennings, FL",
+      "location_id": "locality:FL:jennings",
+      "assumed_route_miles": "247.141651",
+      "reference_point_offset_miles": 0.6942807379877509,
+      "candidate_opis_ids": [
+        66801
+      ]
+    },
+    {
+      "label": "Jasper, FL",
+      "location_id": "locality:FL:jasper",
+      "assumed_route_miles": "261.999556",
+      "reference_point_offset_miles": 0.3739284617428858,
+      "candidate_opis_ids": [
+        66799,
+        68465,
+        69306
+      ]
+    },
+    {
+      "label": "Live Oak, FL",
+      "location_id": "locality:FL:live oak",
+      "assumed_route_miles": "269.243621",
+      "reference_point_offset_miles": 9.054265081235199,
+      "candidate_opis_ids": [
+        3008
+      ]
+    },
+    {
+      "label": "Lake City, FL",
+      "location_id": "locality:FL:lake city",
+      "assumed_route_miles": "286.865119",
+      "reference_point_offset_miles": 2.7856171708038375,
+      "candidate_opis_ids": [
+        1042,
+        1043,
+        3949,
+        70227,
+        70873,
+        72983
+      ]
+    },
+    {
+      "label": "Gainesville, FL",
+      "location_id": "locality:FL:gainesville",
+      "assumed_route_miles": "328.000634",
+      "reference_point_offset_miles": 4.308630060755104,
+      "candidate_opis_ids": [
+        67645
+      ]
+    },
+    {
+      "label": "Reddick, FL",
+      "location_id": "locality:FL:reddick",
+      "assumed_route_miles": "350.672976",
+      "reference_point_offset_miles": 1.665648251437986,
+      "candidate_opis_ids": [
+        52527
+      ]
+    },
+    {
+      "label": "Ocala, FL",
+      "location_id": "locality:FL:ocala",
+      "assumed_route_miles": "363.610736",
+      "reference_point_offset_miles": 2.0467954361784484,
+      "candidate_opis_ids": [
+        235,
+        2883,
+        4909,
+        63792,
+        67438,
+        71277
+      ]
+    },
+    {
+      "label": "Lake Panasoffkee, FL",
+      "location_id": "locality:FL:lake panasoffkee",
+      "assumed_route_miles": "387.901863",
+      "reference_point_offset_miles": 5.122856224033299,
+      "candidate_opis_ids": [
+        52065
+      ]
+    },
+    {
+      "label": "Wildwood, FL",
+      "location_id": "locality:FL:wildwood",
+      "assumed_route_miles": "393.381145",
+      "reference_point_offset_miles": 0.06953400509979865,
+      "candidate_opis_ids": [
+        4620,
+        7533,
+        67627
+      ]
+    },
+    {
+      "label": "Leesburg, FL",
+      "location_id": "locality:FL:leesburg",
+      "assumed_route_miles": "402.259322",
+      "reference_point_offset_miles": 0.197484893501686,
+      "candidate_opis_ids": [
+        67894
+      ]
+    },
+    {
+      "label": "Mascotte, FL",
+      "location_id": "locality:FL:mascotte",
+      "assumed_route_miles": "406.417804",
+      "reference_point_offset_miles": 5.799826986883436,
+      "candidate_opis_ids": [
+        73014
+      ]
+    },
+    {
+      "label": "Winter Garden, FL",
+      "location_id": "locality:FL:winter garden",
+      "assumed_route_miles": "425.063272",
+      "reference_point_offset_miles": 0.264508453431976,
+      "candidate_opis_ids": [
+        71988
+      ]
+    },
+    {
+      "label": "Orlando, FL",
+      "location_id": "locality:FL:orlando",
+      "assumed_route_miles": "440.925090",
+      "reference_point_offset_miles": 5.709384358666746,
+      "candidate_opis_ids": [
+        3444,
+        64795,
+        66668,
+        71512
+      ]
+    },
+    {
+      "label": "Kissimmee, FL",
+      "location_id": "locality:FL:kissimmee",
+      "assumed_route_miles": "448.478872",
+      "reference_point_offset_miles": 3.0214118361494293,
+      "candidate_opis_ids": [
+        63876
+      ]
+    },
+    {
+      "label": "Fort Pierce, FL",
+      "location_id": "locality:FL:fort pierce",
+      "assumed_route_miles": "542.807987",
+      "reference_point_offset_miles": 3.7535968960446886,
+      "candidate_opis_ids": [
+        52690,
+        63612,
+        63623,
+        69124
+      ]
+    },
+    {
+      "label": "Jupiter, FL",
+      "location_id": "locality:FL:jupiter",
+      "assumed_route_miles": "581.590501",
+      "reference_point_offset_miles": 1.7108205282932023,
+      "candidate_opis_ids": [
+        68471
+      ]
+    },
+    {
+      "label": "West Palm Beach, FL",
+      "location_id": "locality:FL:west palm beach",
+      "assumed_route_miles": "593.111131",
+      "reference_point_offset_miles": 0.47288941858560324,
+      "candidate_opis_ids": [
+        64798
+      ]
+    },
+    {
+      "label": "Boynton Beach, FL",
+      "location_id": "locality:FL:boynton beach",
+      "assumed_route_miles": "608.809027",
+      "reference_point_offset_miles": 5.684372191780047,
+      "candidate_opis_ids": [
+        64777
+      ]
+    },
+    {
+      "label": "Pompano Beach, FL",
+      "location_id": "locality:FL:pompano beach",
+      "assumed_route_miles": "628.378765",
+      "reference_point_offset_miles": 2.0919776907203227,
+      "candidate_opis_ids": [
+        3222
+      ]
+    },
+    {
+      "label": "Fort Lauderdale, FL",
+      "location_id": "locality:FL:fort lauderdale",
+      "assumed_route_miles": "637.621513",
+      "reference_point_offset_miles": 4.49226509952803,
+      "candidate_opis_ids": [
+        3908,
+        3927,
+        67424
+      ]
+    },
+    {
+      "label": "Opa Locka, FL",
+      "location_id": "locality:FL:opa locka",
+      "assumed_route_miles": "654.026986",
+      "reference_point_offset_miles": 2.800825722866584,
+      "candidate_opis_ids": [
+        67865
+      ]
+    },
+    {
+      "label": "Hialeah, FL",
+      "location_id": "locality:FL:hialeah",
+      "assumed_route_miles": "655.984538",
+      "reference_point_offset_miles": 5.84257446222309,
+      "candidate_opis_ids": [
+        6082,
+        67957
+      ]
+    },
+    {
+      "label": "Miami, FL",
+      "location_id": "locality:FL:miami",
+      "assumed_route_miles": "662.860740",
+      "reference_point_offset_miles": 0.5454704858291585,
+      "candidate_opis_ids": [
+        4080,
+        64789,
+        66141,
+        66339,
+        68019,
+        70246,
+        71714,
+        71893,
+        72328,
+        72418
+      ]
+    }
+  ],
+  "purchases_exact": [
+    {
+      "location_id": "locality:GA:adel",
+      "label": "Adel, GA",
+      "modeled_opis_id": 70429,
+      "assumed_route_miles": "204.603278",
+      "price": "2.96900000",
+      "gallons": "16.39009434900182931678994671",
+      "conditional_cost": "48.66219012218643124154935178",
+      "arrival_gallons": "29.5396722",
+      "departure_gallons": "45.92976654900182931678994671"
+    }
+  ],
+  "inventory": {
+    "initial_gallons": "50",
+    "consumed_gallons": "66.39009434900182931678994671",
+    "purchased_gallons": "16.39009434900182931678994671",
+    "ending_gallons": "0E-26",
+    "minimum_inventory_gallons": "0E-26",
+    "maximum_purchase_leg_miles": "459.2976654900182931678994671",
+    "range_headroom_on_longest_assumed_leg_miles": "40.7023345099817068321005329",
+    "negative_intermediate_inventory": false,
+    "conservation_exact": true,
+    "zero_fuel_arrivals": [
+      "destination"
+    ],
+    "price_identity_checks": "passed"
+  },
+  "route_locality_offset_range_miles": [
+    0.06953400509979865,
+    9.843322863081783
+  ],
+  "conditional_expenditure_exact": "48.66219012218643124154935178",
+  "warnings": [
+    "Fuel quantities and expenditure are conditional on assumed locations and availability; not driving instructions.",
+    "The mathematical scenario does not establish reachable fuel stops or a 500-mile driving guarantee.",
+    "A locality reference point does not establish where any associated station is located.",
+    "Entrances, access detours, fuel availability and additional mileage are excluded and unverified.",
+    "Positions interpolate within provider steps, or use scaled geometry when steps are absent. US endpoints do not ensure the whole route stays in the US.",
+    "CSV snapshot prices remain attached to OPIS identities; current prices and the initial tank cost are unknown."
+  ],
+  "warning_codes": [
+    "conditional_scenario",
+    "unverified_driving_feasibility",
+    "unknown_station_position",
+    "unverified_access_detours",
+    "route_access_and_chainage_approximation",
+    "historical_snapshot_prices"
+  ],
+  "feasibility": "Unverified: unknown station positions, entrances and detours; zero ending fuel makes any additional consumption unsafe.",
+  "uncertainty_check": {
+    "status": "unknown",
+    "reason": "Unbounded station position or driving access; no safety margin invented."
+  },
+  "quality_checks": {
+    "working_tree_tests_passed": 223,
+    "isolated_committed_checkout_tests_passed": 211,
+    "ruff": "passed both working tree and committed checkout",
+    "changed_python_formatting": "passed",
+    "django_system_checks": "passed",
+    "migration_drift": "none",
+    "diff_check": "passed"
+  },
+  "preservation": {
+    "database_byte_for_byte_unchanged": true,
+    "accepted_stations": 6,
+    "pending_stations": 6620,
+    "dataset_revision": 2,
+    "optimizer_unchanged": true,
+    "approved_coordinate_artifacts_unchanged": true,
+    "submission_drafts_unchanged": true
+  }
+}

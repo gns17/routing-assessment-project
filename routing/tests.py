@@ -1,3 +1,1 @@
-from django.test import TestCase
-
-# Create your tests here.
+"""Application tests live in the repository's tests/ directory."""

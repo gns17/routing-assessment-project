@@ -1,0 +1,24 @@
+{
+  "error": {
+    "code": "insufficient_station_coverage",
+    "message": "Verified station coverage cannot support this route within the 500-mile range",
+    "details": {
+      "coverage": {
+        "scope": "reviewed_candidates_only",
+        "complete_csv_coverage": false,
+        "eligible_candidates": 0,
+        "matched_stations": 0,
+        "route_visits": 0,
+        "largest_gap_miles": "663.900943",
+        "unbridgeable_gaps": [
+          {
+            "from_miles": "0.000000",
+            "to_miles": "663.900943",
+            "gap_miles": "663.900943"
+          }
+        ]
+      },
+      "dataset_revision": 2
+    }
+  }
+}

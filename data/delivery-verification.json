@@ -1,0 +1,32 @@
+{
+  "phase": "delivery publication; no new Geoapify calls, Loom, submission or permission changes",
+  "working_tree_tests_passed": 224,
+  "committed_checkout_tests_passed": 212,
+  "pending_unrelated_research_tests": 12,
+  "ruff": "passed working tree and committed checkout",
+  "relevant_formatting": "passed",
+  "django_system_checks": "passed",
+  "migration_drift": "none",
+  "fresh_setup": "data/delivery-fresh-setup-verification.json",
+  "postman": {
+    "collection": "docs/postman/spotter-routing.postman_collection.json",
+    "assertion_groups_evaluated_offline": 14,
+    "actual_postman_desktop_verified": false,
+    "desktop_not_found_in_standard_application_locations": true
+  },
+  "browser": "data/best-effort-readable-popup-browser-verification.json",
+  "github": {
+    "repository": "gns17/routing-assessment-project",
+    "visibility": "private",
+    "listed_collaborators": [
+      "gns17"
+    ],
+    "reviewer_access_confirmed": false,
+    "permission_changes": false
+  },
+  "development_database_unchanged": true,
+  "resolved_stations": 6,
+  "unresolved_stations": 6620,
+  "dataset_revision": 2,
+  "external_geoapify_attempts_this_phase": 0
+}

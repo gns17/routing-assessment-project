@@ -1,0 +1,103 @@
+{
+  "mode": "one cold real HTTP request through running Django, live Geoapify, local reviewed SQLite",
+  "api_status": 200,
+  "api_total_seconds": 4.522191,
+  "provider_http_seconds": 4.3668,
+  "provider_attempts": [
+    {
+      "number": 1,
+      "endpoint": "/v1/geocode/search",
+      "started_at": "2026-10-09T18:29:56.342969+00:00",
+      "status_code": 200,
+      "latency_seconds": 1.3702
+    },
+    {
+      "number": 2,
+      "endpoint": "/v1/geocode/search",
+      "started_at": "2026-10-09T18:29:57.719271+00:00",
+      "status_code": 200,
+      "latency_seconds": 0.565
+    },
+    {
+      "number": 3,
+      "endpoint": "/v1/routing",
+      "started_at": "2026-10-09T18:29:58.288839+00:00",
+      "status_code": 200,
+      "latency_seconds": 2.4316
+    }
+  ],
+  "retries": 0,
+  "estimated_credits": 6,
+  "estimated_allowance": 8,
+  "actual_billed_credits": null,
+  "agreement_with_saved_response": {
+    "distance_miles": true,
+    "mileage_method": true,
+    "fuel_stops": true,
+    "total_fuel_cost": true,
+    "gallons_consumed": true,
+    "gallons_purchased": true,
+    "ending_gallons": true,
+    "dataset_revision": true,
+    "coverage": true,
+    "route": true
+  },
+  "declared_tolerances": {
+    "distance_miles": "0.000001",
+    "gallons": "0.000001",
+    "cost_usd": "0.01",
+    "actual_difference": "zero at displayed precision; geometry/stops identical"
+  },
+  "inventory_conservation": "passed",
+  "mileage_source": "provider_steps",
+  "distance_miles": "1221.630055",
+  "dataset_revision": 2,
+  "coverage": {
+    "scope": "reviewed_candidates_only",
+    "complete_csv_coverage": false,
+    "eligible_candidates": 6,
+    "matched_stations": 6,
+    "route_visits": 6,
+    "largest_gap_miles": "350.879358",
+    "unbridgeable_gaps": []
+  },
+  "purchase_count": 4,
+  "total_cost": "232.44",
+  "gallons_consumed": "122.163006",
+  "gallons_purchased": "72.163006",
+  "purchase_leg_miles": [
+    "290.859611",
+    "2.119421",
+    "240.437447",
+    "350.979690",
+    "337.233886"
+  ],
+  "largest_purchase_leg_miles": "350.979690",
+  "all_six_station_offsets": [
+    {
+      "opis_id": 4446,
+      "offset_miles": 0.04522054592082213
+    },
+    {
+      "opis_id": 7733,
+      "offset_miles": 0.07208264575522717
+    },
+    {
+      "opis_id": 52468,
+      "offset_miles": 0.09057487338522252
+    },
+    {
+      "opis_id": 4227,
+      "offset_miles": 0.16940105796309912
+    },
+    {
+      "opis_id": 6755,
+      "offset_miles": 0.24813249096696768
+    },
+    {
+      "opis_id": 52458,
+      "offset_miles": 0.24919674276786796
+    }
+  ],
+  "offset_evidence_note": "The live route geometry exactly matches saved geometry; all six offsets were independently recomputed during offline ORM validation. Live API directly confirms purchase offsets/positions for four selected stops."
+}

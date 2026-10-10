@@ -1,0 +1,118 @@
+{
+  "verification": "Actual Chrome, cached real Leaflet assets and normal OSM tiles; attribution rendered from unchanged saved live response data, not new live provider verification",
+  "geoapify_http_attempts": 0,
+  "new_external_asset_tile_requests": 0,
+  "prior_bounded_harness_osm_requests": 40,
+  "source_responses": [
+    "data/final-live-api-response.json",
+    "data/best-effort-live-api-response.json"
+  ],
+  "modes": [
+    {
+      "mode": "strict",
+      "checks": {
+        "real_leaflet": true,
+        "exact_saved_geometry": true,
+        "geoapify_credit": true,
+        "geoapify_safe_link": true,
+        "osm_credit": true,
+        "expected_markers": true,
+        "expected_cost": true,
+        "osm_tiles_loaded": true,
+        "no_console_errors": true,
+        "no_network_errors": true
+      },
+      "map": {
+        "ready": true,
+        "leaflet": "1.9.4",
+        "attribution_text": " Leaflet | © OpenStreetMap contributors | Powered by Geoapify",
+        "links": [
+          {
+            "href": "https://leafletjs.com/",
+            "text": " Leaflet",
+            "target": "",
+            "rel": "",
+            "visible": true
+          },
+          {
+            "href": "https://www.openstreetmap.org/copyright",
+            "text": "OpenStreetMap",
+            "target": "",
+            "rel": "",
+            "visible": true
+          },
+          {
+            "href": "https://www.geoapify.com/",
+            "text": "Powered by Geoapify",
+            "target": "_blank",
+            "rel": "noopener noreferrer",
+            "visible": true
+          }
+        ],
+        "geometry_exact": true,
+        "purchase_markers": 4,
+        "area_indicators": 0,
+        "summary": "1221.630055 miles; $232.44 purchased fuel; 122.163006 gallons consumed. Initial tank cost unknown and excluded. Dataset revision 2.",
+        "loaded_tiles": 24,
+        "pending_tiles": 0
+      },
+      "console_errors": [],
+      "network_failures": [],
+      "cached_tile_responses": 24,
+      "blocked_missing_cache_urls": []
+    },
+    {
+      "mode": "best_effort",
+      "checks": {
+        "real_leaflet": true,
+        "exact_saved_geometry": true,
+        "geoapify_credit": true,
+        "geoapify_safe_link": true,
+        "osm_credit": true,
+        "expected_markers": true,
+        "expected_cost": true,
+        "osm_tiles_loaded": true,
+        "no_console_errors": true,
+        "no_network_errors": true
+      },
+      "map": {
+        "ready": true,
+        "leaflet": "1.9.4",
+        "attribution_text": " Leaflet | © OpenStreetMap contributors | Powered by Geoapify",
+        "links": [
+          {
+            "href": "https://leafletjs.com/",
+            "text": " Leaflet",
+            "target": "",
+            "rel": "",
+            "visible": true
+          },
+          {
+            "href": "https://www.openstreetmap.org/copyright",
+            "text": "OpenStreetMap",
+            "target": "",
+            "rel": "",
+            "visible": true
+          },
+          {
+            "href": "https://www.geoapify.com/",
+            "text": "Powered by Geoapify",
+            "target": "_blank",
+            "rel": "noopener noreferrer",
+            "visible": true
+          }
+        ],
+        "geometry_exact": true,
+        "purchase_markers": 0,
+        "area_indicators": 1,
+        "summary": "663.900943 route miles; conditional scenario $48.66. Driving fuel feasibility UNVERIFIED. Not navigation instructions. Initial tank cost excluded.",
+        "loaded_tiles": 15,
+        "pending_tiles": 0
+      },
+      "console_errors": [],
+      "network_failures": [],
+      "cached_tile_responses": 15,
+      "blocked_missing_cache_urls": []
+    }
+  ]
+}

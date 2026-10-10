@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Route and fuel stops</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>body { margin: 0; font-family: sans-serif; } #map { height: 80vh; } p { margin: 1rem; }</style>
+</head>
+<body>
+  <p>Fixed snapshot. Incomplete station coverage. Road access and detours are unverified.</p>
+  <p id="summary"></p>
+  <p id="quality-legend" hidden></p>
+  <ul id="warnings" hidden></ul>
+  <div id="map" aria-label="Route and recommended fuel stops"></div>
+  {{ payload|json_script:"route-data" }}
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const data = JSON.parse(document.getElementById('route-data').textContent);
+    const estimated = data.planning_mode === 'best_effort';
+    document.getElementById('summary').textContent = estimated
+      ? `${data.distance_miles} route miles; conditional scenario $${data.estimated_fuel_expenditure}. Driving fuel feasibility UNVERIFIED. Not navigation instructions. Initial tank cost excluded.`
+      : `${data.distance_miles} miles; $${data.total_fuel_cost} purchased fuel; ${data.gallons_consumed} gallons consumed. Initial tank cost unknown and excluded. Dataset revision ${data.dataset_revision}.`;
+    document.getElementById('quality-legend').textContent = estimated
+      ? 'Green: reviewed site. Orange: estimated physical site. Hollow purple: locality reference area, NOT a station. All scenario quantities are conditional.'
+      : '';
+    if (estimated) {
+      document.getElementById('quality-legend').hidden = false;
+      document.getElementById('warnings').hidden = false;
+      document.getElementById('map').setAttribute('aria-label', 'Route and conditional fueling areas; not navigation instructions');
+      for (const [index, message] of data.warnings.entries()) {
+        const item = document.createElement('li');
+        item.textContent = `${data.warning_codes[index]}: ${message}`;
+        document.getElementById('warnings').appendChild(item);
+      }
+    }
+    const map = L.map('map');
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | <a href="https://www.geoapify.com/" target="_blank" rel="noopener noreferrer">Powered by Geoapify</a>'
+    }).addTo(map);
+    const route = L.geoJSON(data.route).addTo(map);
+    map.fitBounds(route.getBounds(), {maxZoom: 14});
+    const lines = data.route.geometry.type === 'LineString' ? [data.route.geometry.coordinates] : data.route.geometry.coordinates;
+    for (const [point, label] of [[lines[0][0], 'Start'], [lines.at(-1).at(-1), 'Finish']]) {
+      L.circleMarker([point[1], point[0]]).addTo(map).bindPopup(label);
+    }
+    if (estimated) {
+      for (const item of data.conditional_scenario.purchases) {
+        const area = item.location_quality === 'locality_approximation';
+        const reviewed = item.location_quality === 'verified_station_site';
+        const point = item.assumed_point;
+        const popup = document.createElement('span');
+        popup.style.whiteSpace = 'pre-line';
+        const names = item.candidate_stations.map(s => `${s.name} (OPIS ${s.opis_id}, snapshot $${s.price_per_gallon}/gallon)`).join('; ');
+        const source = item.provenance.source || item.provenance;
+        const census = area && typeof source.url === 'string' && source.url.startsWith('https://www2.census.gov/');
+        const sourceLabel = census ? `US Census Gazetteer (${data.location_data_provenance.edition})` : area ? 'Locality reference data' : reviewed ? 'Reviewed station evidence' : 'Estimated station evidence';
+        const locality = area ? item.label : `${item.candidate_stations[0].city}, ${item.candidate_stations[0].state}`;
+        const method = census ? 'Census representative internal point' : source.coordinate_method || 'See source evidence in API response';
+        const important = area ? 'This is not a station location or verified entrance.' : reviewed ? 'Station site reviewed; entrance and road access are not verified.' : 'Physical station estimate; identity, position and entrance are not independently verified.';
+        popup.textContent = `${area ? 'APPROXIMATE FUELING AREA — not a station' : reviewed ? 'Reviewed station site — access unverified' : 'ESTIMATED PHYSICAL SITE — unverified'}: ${item.label}\nConditional ${item.modeled_gallons_purchased} gallons, $${item.conditional_purchase_cost}. Modeled price from OPIS ${item.modeled_price_candidate_opis_id}.\nCandidates: ${names}\nSource: ${sourceLabel}\nLocality: ${locality}\nCoordinate method: ${method}\nImportant: ${important}\nUncertainty: route-position bound ${item.uncertainty.route_mile_bound ?? 'unknown'} miles; access-detour bound ${item.uncertainty.access_detour_bound_miles ?? 'unknown'} miles.\nNo navigation destination; positioning, availability and access require confirmation. Full provenance and uncertainty remain in the API response.`;
+        // Screen-sized hollow indicator: NOT an invented geographic uncertainty radius.
+        L.circleMarker([point.latitude, point.longitude], {
+          radius: area ? 14 : 8, color: area ? '#753bbd' : reviewed ? '#168344' : '#d87800',
+          fillOpacity: area ? 0 : 0.5, dashArray: area ? '4 4' : null
+        }).addTo(map).bindPopup(popup);
+      }
+    }
+    for (const [index, stop] of data.fuel_stops.entries()) {
+      const label = document.createElement('span');
+      label.textContent = `Stop ${index + 1}: ${stop.name} (OPIS ${stop.opis_id}), $${stop.price_per_gallon}/gallon, ${stop.gallons_purchased} gallons, $${stop.purchase_cost}; ${stop.route_miles} route miles`;
+      L.marker([stop.latitude, stop.longitude]).addTo(map).bindPopup(label);
+    }
+  </script>
+</body>
+</html>
