@@ -316,7 +316,12 @@ requests and verify that response; no such call was made here. Review the new AP
 contract and update README/Postman/Loom mentions explicitly after review. Existing
 submission and recording drafts have been preserved. No commit or push is performed.
 
-## Proposed final live verification (awaiting approval)
+## Final live verification plan and execution
+
+The bounded plan below was subsequently approved and executed. The real route
+returned a **$48.66 conditional scenario over 663.900943 driving miles**; strict
+coverage still failed honestly. See [live verification results](best-effort-live-verification.md)
+for request accounting, uncertainty, inventory and actual browser evidence.
 
 Use `POST /api/route/` with:
 
@@ -354,3 +359,8 @@ planning with offline locality hints`**, containing the feature source files, ma
 document. Keep earlier research/import-review artifacts and submission/Loom drafts
 separate. Review and stage explicit paths; exclude `.env`, SQLite databases, raw ZIP,
 browser profiles, caches and temporary outputs. Commit/push await approval.
+
+The feature checkpoint above is now completed locally as **3fd0cf4**. Its 211 tests
+pass in an isolated archived checkout without any pending research/submission files.
+The full working tree contains 12 additional pending research tests, for 223 total.
+The live verification evidence remains uncommitted for review; nothing was pushed.

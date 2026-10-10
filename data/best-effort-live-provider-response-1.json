@@ -1,0 +1,108 @@
+{
+  "results": [
+    {
+      "datasource": {
+        "sourcename": "openstreetmap",
+        "attribution": "\u00a9 OpenStreetMap contributors",
+        "license": "Open Database License",
+        "url": "https://www.openstreetmap.org/copyright"
+      },
+      "name": "Atlanta",
+      "other_names": {
+        "name:zh": "\u4e9a\u7279\u5170\u5927;\u4e9e\u7279\u862d\u5927",
+        "name:zh-Hans": "\u4e9a\u7279\u5170\u5927",
+        "name:zh-Hant": "\u4e9e\u7279\u862d\u5927",
+        "name:am": "\u12a0\u1275\u120b\u1295\u1273",
+        "name:ar": "\u0623\u062a\u0644\u0627\u0646\u062a\u0627",
+        "name:ba": "\u0410\u0442\u043b\u0430\u043d\u0442\u0430",
+        "name:be": "\u0410\u0442\u043b\u0430\u043d\u0442\u0430",
+        "name:bg": "\u0410\u0442\u043b\u0430\u043d\u0442\u0430",
+        "name:bn": "\u0986\u099f\u09b2\u09be\u09a8\u09cd\u099f\u09be",
+        "name:bo": "\u0f68\u0f0b\u0f4a\u0f72\u0f0b\u0f63\u0f71\u0f53\u0f0b\u0f4a\u0f71\u0f0d",
+        "name:ce": "\u0410\u0442\u043b\u0430\u043d\u0442\u0430",
+        "name:el": "\u0391\u03c4\u03bb\u03ac\u03bd\u03c4\u03b1",
+        "name:fa": "\u0622\u062a\u0644\u0627\u0646\u062a\u0627",
+        "name:gu": "\u0a8f\u0a9f\u0ab2\u0abe\u0aa8\u0acd\u0a9f\u0abe",
+        "name:he": "\u05d0\u05d8\u05dc\u05e0\u05d8\u05d4",
+        "name:hi": "\u0905\u091f\u0932\u093e\u0902\u091f\u093e",
+        "name:hy": "\u0531\u057f\u056c\u0561\u0576\u057f\u0561",
+        "name:ja": "\u30a2\u30c8\u30e9\u30f3\u30bf",
+        "name:ka": "\u10d0\u10e2\u10da\u10d0\u10dc\u10e2\u10d0",
+        "name:kk": "\u0410\u0442\u043b\u0430\u043d\u0442\u0430",
+        "name:kn": "\u0c85\u0c9f\u0ccd\u0cb2\u0cbe\u0c82\u0c9f\u0cbe",
+        "name:ko": "\uc560\ud2c0\ub79c\ud0c0",
+        "name:ky": "\u0410\u0442\u043b\u0430\u043d\u0442\u0430",
+        "name:mi": "\u0100taranata",
+        "name:mk": "\u0410\u0442\u043b\u0430\u043d\u0442\u0430",
+        "name:ml": "\u0d05\u0d31\u0d4d\u0d31\u0d4d\u0d32\u0d3e\u0d28\u0d4d\u0d31\u0d3e \u0d28\u0d17\u0d30\u0d02",
+        "name:mn": "\u0410\u0442\u043b\u0430\u043d\u0442\u0430",
+        "name:mr": "\u0905\u091f\u0932\u093e\u0902\u091f\u093e",
+        "name:my": "\u1021\u1010\u1039\u1010\u101c\u1014\u1039\u1010\u102c\u1019\u103c\u102d\u102f\u1037",
+        "name:nv": "B\u00e9\u00e9sh Ahida\u02bcdiitiin",
+        "name:os": "\u0410\u0442\u043b\u0430\u043d\u0442\u00e6",
+        "name:pa": "\u0a05\u0a1f\u0a32\u0a3e\u0a02\u0a1f\u0a3e",
+        "name:pi": "\u090f\u091f\u094d\u0932\u093e\u0928\u094d\u091f\u093e",
+        "name:ru": "\u0410\u0442\u043b\u0430\u043d\u0442\u0430",
+        "name:sa": "\u0905\u091f\u0932\u093e\u0928\u094d\u091f\u093e",
+        "name:sd": "\u0627\u0626\u067d\u0644\u0627\u0646\u067d\u0627",
+        "name:sr": "\u0410\u0442\u043b\u0430\u043d\u0442\u0430",
+        "name:ta": "\u0b85\u0b9f\u0bcd\u0bb2\u0bbe\u0ba9\u0bcd\u0b9f\u0bbe",
+        "name:te": "\u0c05\u0c1f\u0c4d\u0c32\u0c3e\u0c02\u0c1f\u0c3e",
+        "name:tg": "\u0410\u0442\u043b\u0430\u043d\u0442\u0430",
+        "name:th": "\u0e41\u0e2d\u0e15\u0e41\u0e25\u0e19\u0e15\u0e32",
+        "name:tt": "\u0410\u0442\u043b\u0430\u043d\u0442\u0430",
+        "name:uk": "\u0410\u0442\u043b\u0430\u043d\u0442\u0430",
+        "name:ur": "\u0627\u0679\u0644\u0627\u0646\u0679\u0627",
+        "name:yi": "\u05d0\u05d8\u05dc\u05d0\u05e0\u05d8\u05d0"
+      },
+      "country": "United States",
+      "country_code": "us",
+      "state": "Georgia",
+      "county": "Fulton County",
+      "city": "Atlanta",
+      "iso3166_2": "US-GA",
+      "lon": -84.3898151,
+      "lat": 33.7544657,
+      "state_code": "GA",
+      "result_type": "city",
+      "county_code": "FUL",
+      "formatted": "Atlanta, GA, United States of America",
+      "address_line1": "Atlanta, GA",
+      "address_line2": "United States of America",
+      "category": "administrative",
+      "timezone": {
+        "name": "America/New_York",
+        "offset_STD": "-05:00",
+        "offset_DST": "-04:00",
+        "offset_STD_seconds": -18000,
+        "offset_DST_seconds": -14400,
+        "abbreviation_STD": "EST",
+        "abbreviation_DST": "EDT"
+      },
+      "plus_code": "865QQJ36+Q3",
+      "plus_code_short": "36+Q3 Atlanta, Fulton County, United States",
+      "rank": {
+        "importance": 0.7539758489158439,
+        "popularity": 7.589114902609576,
+        "confidence": 1,
+        "confidence_city_level": 1,
+        "match_type": "full_match"
+      },
+      "place_id": "512b7f08bbf21855c05914ba015592e04040f00101f90105d3010000000000c0020892030741746c616e7461",
+      "bbox": {
+        "lon1": -84.550854,
+        "lat1": 33.6479187,
+        "lon2": -84.28956,
+        "lat2": 33.886823
+      }
+    }
+  ],
+  "query": {
+    "text": "Atlanta, GA",
+    "parsed": {
+      "city": "atlanta",
+      "state": "ga",
+      "expected_type": "city"
+    }
+  }
+}
