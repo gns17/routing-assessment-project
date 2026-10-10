@@ -74,4 +74,3 @@ remain historical evidence; refreshed images use the same saved responses and ar
 explicitly labeled replay, not additional live API verification.
 
 Routing/geocoding powered by [Geoapify](https://www.geoapify.com/).
-

@@ -32,3 +32,12 @@ the current presentation of unchanged saved route/planning data:
 [Machine-readable browser checks](../data/map-attribution-verification.json).
 Provider reuse/attribution terms and upstream data notices are in the
 [fixture index](../data/README.md). No third-party data ownership or new license is claimed.
+
+Final curated-checkout verification passed **214 committed tests**, including both
+recorded-route regressions and the two attribution cases. The working tree passed
+**226 tests** with its 12 preserved, uncommitted research tests. Locked dependencies
+installed from the local cache; fresh migrations/CSV import and reviewed six-site
+dry run/import produced 6,626 stations, six accepted sites and revision 2. Ruff,
+relevant formatting, Django checks, migration-drift, local document links and
+credential/artifact scans passed. The development database and nine untracked files
+remain unchanged. Recording material stays outside Git; development is frozen.
