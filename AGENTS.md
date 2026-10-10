@@ -84,14 +84,12 @@ Run Django:
 
 # Current phase
 
-GNS-5 is complete with a negative conclusion for unattended nationwide station
-enrichment; its unexecuted sample/audit criteria are explicitly superseded.
-Prioritize GNS-7 routing integration and GNS-9 pure optimization with mocked tests,
-then GNS-6 minimal ORM schema/CSV import and a tested end-to-end vertical slice.
-Import unresolved stations with prices/provenance/status, but only sufficiently
-reconciled coordinates participate in matching. Synthetic fixtures are for tests,
-never real CSV matches in a demonstration. Disclose real-world coverage limits.
-GNS-12 is a nonblocking New Mexico-only offline feasibility experiment, initially
-60–90 minutes after core work starts; abort early if setup/processing is costly.
-No OSM downloads, Michigan expansion, or additional live Geoapify requests without
-explicit approval. Keep implementation scoped to active approved Linear issues.
+Implementation is published; current work is final reviewer curation and delivery.
+Preserve strict-first behavior, the unchanged fuel optimizer and six approved sites.
+Opt-in best effort returns conditional scenarios with unverified driving feasibility,
+not station navigation. Locality associations must not be described as station geocodes.
+No new features, research/enrichment, live provider calls or coordinate imports without
+approval. Keep GNS-11 In Progress until actual delivery gates are met. Preserve pending
+untracked research. Do not record or submit, change repository permissions, rewrite
+history or merge to main without approval. Reviewer entry point is README.md; historical
+investigations are grouped under docs/archive/.

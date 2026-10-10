@@ -1,7 +1,7 @@
 # Final live, browser and fresh-setup verification
 
-Delivery review: see [assignment compliance and scoped issue completion](submission-readiness.md)
-and the [4:45 Loom draft](loom-walkthrough.md). This report records the earlier
+Delivery review: see [assignment compliance and scoped issue completion](archive/submission-readiness.md)
+and the [reviewer README](../README.md). This report records the earlier
 verification milestone; its final pending-work notes are historical. No additional
 live verification was performed during delivery preparation.
 

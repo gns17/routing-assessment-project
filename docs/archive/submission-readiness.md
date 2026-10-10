@@ -118,8 +118,8 @@ is therefore not established; do not send a private URL assuming access. No visi
 invitations or permissions were changed. Postman was not found at the standard
 `/Applications/Postman.app` location; availability elsewhere is unconfirmed.
 
-Use the [recording checklist](recording-checklist.md) and
-[submission package](submission-package.md). No new application functionality is
+Use the [reviewer setup](../../README.md) and
+[reviewer setup](../../README.md). No new application functionality is
 needed. Deadline/access/tooling/approval gates are separate from optional benchmarking
 and future coverage work.
 
@@ -128,7 +128,7 @@ research), Ruff, relevant formatting, Django and migration-drift checks pass. Th
 development DB remains 6,626 stations / six accepted / revision 2. The isolated fresh
 HTTP reproduction checks both modes and both map pages with recorded-only provider
 transport and no credential/dev-DB/research access. The earlier GET-405 startup check
-was historical; current delivery evidence is in [delivery verification](delivery-verification.md).
+was historical; current delivery evidence is in [delivery verification](../delivery-verification.md).
 No actual Postman desktop run or new live Geoapify request is claimed.
 
 ## Approved optional fallback and final publication

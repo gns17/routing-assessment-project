@@ -52,7 +52,7 @@ may be absent; missing evidence requires review. See the official
 ## Representative sample
 
 The immutable source is `data/fuel-prices.csv`; the prepared sample/results artifact
-is [data/geocoding-feasibility.json](../data/geocoding-feasibility.json).
+is [data/geocoding-feasibility.json](../../data/geocoding-feasibility.json).
 OPIS IDs are unique, Canadian entries are excluded, and source-row references,
 aliases, location fingerprints, and a source checksum are retained. Prices never
 participate in fingerprints or queries.

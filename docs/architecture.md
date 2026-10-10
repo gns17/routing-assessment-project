@@ -9,12 +9,12 @@ seed data. Conventional Django persistence and durable enrichment progress are
 deliberate benefits; Django does not require a database and ORM speed is not assumed.
 Measure query and processing performance on the expected workload.
 
-Core application implementation is approved and underway. GNS-5 is complete
-with a negative conclusion for unattended nationwide station enrichment.
-Geoapify remains the endpoint geocoding/routing provider, not an approved
-automatic station-enrichment strategy. GNS-12 is a nonblocking New Mexico-only
-offline OSM experiment (60–90 minutes); downloading requires separate approval.
-No additional live Geoapify calls or OSM downloads are currently authorized.
+The implementation is complete for the disclosed reviewed subset. Geoapify is the
+endpoint geocoder/router; unattended nationwide station enrichment was rejected
+by feasibility investigations. Six independently reviewed sites support strict
+planning. An approved opt-in conditional layer uses the committed Census locality
+snapshot when strict coverage is insufficient; it never promotes hints to verified
+station records. Research sites remain outside the approved database.
 
 ## Evidence and dataset handling
 
@@ -76,8 +76,8 @@ attestation, and evidence. Unknown, inactive, stale, unverified or explicitly
 synthetic entries reject the whole artifact. Updates and dataset revision commit
 together; repeating unchanged evidence is idempotent. This command makes no HTTP
 requests. Human review of identity and station placement remains essential: an
-attestation flag does not establish correctness by itself. No real coordinates
-have been imported. The stored pending/ambiguous/rejected statuses preserve
+attestation flag does not establish correctness by itself. Six reviewed station sites have been imported for the demonstration; no research
+coordinates are approved production imports. The stored pending/ambiguous/rejected statuses preserve
 unresolved records without making them eligible for planning.
 
 Any future approved resolver reads inputs before HTTP and writes results in a
@@ -96,7 +96,7 @@ those extensions now.
 
 | Component | Responsibility |
 | --- | --- |
-| DRF validation | Bounded, non-empty start and finish strings |
+| DRF validation | Bounded start/finish strings and optional strict JSON boolean `allow_estimates` |
 | Endpoint resolver | Geoapify geocoding, ambiguity/US checks, permitted caching |
 | Routing adapter | HTTP timeouts/errors and normalized geometry/distances |
 | Station repository | Indexed ORM bounding-box filtering; project needed columns into plain objects |
@@ -193,3 +193,21 @@ Out of scope: global road-network cost optimization, live prices, traffic/tolls,
 fleet features, a frontend application, and production infrastructure. Do not add
 PostgreSQL, PostGIS, Redis, Celery, or self-hosted routing. No station CRUD/admin UI.
 Full-country geocoding quality and budget remain subject to the feasibility review.
+
+## Optional conditional planning
+
+Strict planning always runs first and its successful contract is preserved. Only
+`insufficient_station_coverage` can invoke opt-in best effort. A separate pure Python
+layer groups original OPIS identities/prices by versioned locality hints or explicit
+physical-estimate evidence, projects assumed positions and invokes the unchanged
+optimizer. Locality anchors are areas, not station coordinates or navigation points.
+All quantities are conditional; `fuel_feasibility` stays unverified, actionable
+`fuel_stops` stays empty and guaranteed totals remain null.
+
+ORM stations remain the identity/price source. The static hint file is a deployment
+snapshot loaded once per worker, not replacement station persistence or runtime
+geocoding. Grouped locality anchors prevent fictitious independent repeated stops.
+Mode-specific plan caches include dataset revision and hint content version;
+provider geometry caches are shared. Supplied uncertainty bounds can reject a
+scenario; unknown access/position bounds never become a fabricated safety margin.
+See the [response contract](best-effort-planning.md) and [fixture index](../data/README.md).

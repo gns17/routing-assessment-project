@@ -1,7 +1,7 @@
 # GNS-8 / GNS-10 validation review
 
 Historical pre-corridor review: the pending live/map/default-calibration notes below
-are superseded by [final verification](final-verification.md) and the explicit
+are superseded by [final verification](../final-verification.md) and the explicit
 [scoped completion review](submission-readiness.md). Original measurements and
 findings are preserved; completion does not imply nationwide station coverage.
 
@@ -70,7 +70,7 @@ Reproduce with `uv run python -m spikes.benchmark_planning --output /tmp/plannin
 The utility always configures a disposable database before Django initialization,
 asserts that database location, mocks all HTTP, and deletes the database afterward.
 It never writes benchmark coordinates to production SQLite. Machine-readable
-results: [local-planning-benchmark.json](../data/local-planning-benchmark.json).
+results: [local-planning-benchmark.json](../../data/local-planning-benchmark.json).
 
 | Synthetic workload | Segments | Eligible candidates | Cold median | Warm median | Payload | Python traced peak |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |

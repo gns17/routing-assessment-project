@@ -37,7 +37,7 @@ Whole-dataset before/after snapshots confirmed:
 
 Only the local development `db.sqlite3` was modified. The validator checked its
 resolved path/SQLite engine, and compared every other row/field after import.
-Machine-readable observations: [corridor-local-integration.json](../data/corridor-local-integration.json).
+Machine-readable observations: [corridor-local-integration.json](../../data/corridor-local-integration.json).
 
 ## Actual API pipeline with recorded provider transport
 
@@ -62,7 +62,7 @@ After import it returned **200**, using unchanged geometry and provider step mil
 Response retained the exact saved route geometry and actual ORM station identities,
 coordinates and snapshot prices. Internal comparisons allowed <=0.0000005 gallon
 or mile display rounding, and <=$0.005 per displayed purchase; no optimizer objective
-was changed. Full response: [corridor-offline-api-response.json](../data/corridor-offline-api-response.json).
+was changed. Full response: [corridor-offline-api-response.json](../../data/corridor-offline-api-response.json).
 
 | Purchased at | Route mile | Gallons | Displayed cost |
 | --- | ---: | ---: | ---: |

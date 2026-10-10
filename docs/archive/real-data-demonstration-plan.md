@@ -1,7 +1,7 @@
 # Real-data demonstration — original proposal
 
 The bounded route/coordinate investigation was subsequently approved and executed.
-See [corridor-investigation.md](corridor-investigation.md) for findings. Coordinate
+See [corridor-investigation.md](../corridor-investigation.md) for findings. Coordinate
 import remains unapproved; the original pre-execution proposal below is preserved.
 
 This is a proposed investigation, not an executed reconciliation. No new station

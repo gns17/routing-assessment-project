@@ -93,8 +93,8 @@ retain unresolved records and reject unsupported long trips. Do not substitute P
 
 Completed: A investigation → C/E independent components → B schema/import.
 Current: D/F complete with explicit scoped acceptance and live/browser/fresh evidence.
-See [final verification](final-verification.md), [submission readiness](submission-readiness.md)
-and [submission package](submission-package.md). G's required local technical checks
+See [final verification](../final-verification.md), [submission readiness](submission-readiness.md)
+and [reviewer setup](../../README.md). G's required local technical checks
 are complete; the user verified latest-stable Django and explicitly made SQLite
 write-contention benchmarking optional/nonblocking absent an actual problem.
 Confirmed deadline: October 11, 2026, 16:55 GMT−3 (19:55 UTC).
@@ -112,5 +112,5 @@ station coordinates, ORM architecture or the pure optimizer. Locality positions
 support only explicitly conditional scenarios, never a nationwide fuel guarantee.
 Remaining work is publication, reviewer access, Postman/under-five-minute Loom and
 submission. No new enrichment, live requests, infrastructure or scope expansion.
-See [best-effort live verification](best-effort-live-verification.md) and
-[Postman collection instructions](postman/README.md). GNS-11 remains In Progress.
+See [best-effort live verification](../best-effort-live-verification.md) and
+[Postman collection instructions](../postman/README.md). GNS-11 remains In Progress.
